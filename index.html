@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip Planner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- the navigation bar -->
+    <div id="navbar" class="ui inverted raised segment ">
+        <div class="ui huge centered header">Trip Planner</div> 
+    </div>
+    
+    <!-- a sedment that holds the form -->
+    <div id="main-section" class="ui centered raised segment">
+        <h1 class="ui huge green centered header">My Itenerary</h1>
+        <div class="ui container">
+            <form class="ui equal width form">
+                <h2 class="ui medium header">Where are you going?</h2>
+                <div class="field">                  
+                  <input id="selected-city" type="text" name="city" placeholder="Select City">
+                </div>
+                <h2 class="ui medium header">When is your trip?</h2>
+                <div class="field">
+                  <label>Arrival Date</label>
+                  <input id="arrival-date" type="date" name="trip" placeholder="Arrival Date">                 
+                </div>
+                <div class="field">
+                  <label>Departure Date</label>
+                  <input id="departure-date" type="date" name="trip" placeholder="Departure Date">                 
+                </div>                
+                <button id="submit-button" class="ui large basic green button" type="submit">Submit</button>
+            </form>
+        </div>        
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <script src="./js/activityCall.js"></script>
+</body>
+</html>

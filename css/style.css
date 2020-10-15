@@ -1,1 +1,14 @@
 /* site-wide brand formatting */
+#navbar {
+    height: 100px;   
+    padding-top: 30px;
+    font-size: 2em;
+}
+#main-section {
+  margin: 0 auto;
+  width: 50%;   
+}
+#daily-activity {
+    /* margin: 0 auto; */
+    width: 40rem;
+}
