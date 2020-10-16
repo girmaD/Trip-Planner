@@ -1,4 +1,10 @@
 /* site-wide brand formatting */
+body {
+    background-image: url("https://images.pexels.com/photos/62693/pexels-photo-62693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-color: #cccccc;
+    background-size: cover;
+}
+
 #navbar {
     height: 100px;   
     padding-top: 30px;
@@ -8,7 +14,15 @@
   margin: 0 auto;
   width: 50%;   
 }
+#main-section .conainer .form {
+  margin: 0 auto;
+  width: 75%;   
+}
 #daily-activity {
     /* margin: 0 auto; */
     width: 40rem;
 }
+/* #daily-activity .content .sub {
+    border: 1px solid black;
+    background-color: blanchedalmond;
+} */
