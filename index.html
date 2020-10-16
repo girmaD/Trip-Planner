@@ -1,42 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trip Planner</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- font for fly dragon -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Piedra&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font for trip planer -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font for my trip -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Kaushan+Script&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Piedra&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font for question and day1  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font for day1 content -->
+    <link
+    href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
+    rel="stylesheet"
+  </head>
+  <body>
     <!-- the navigation bar -->
-    <div id="navbar" class="ui inverted raised segment ">
-        <div class="ui huge centered header">Trip Planner</div> 
+    <div id="navbar" class="ui inverted raised segment">
+      <h1 class="titleHeader">Trip Planner</h1>
     </div>
-    
+
     <!-- a sedment that holds the form -->
+
     <div id="main-section" class="ui centered raised segment">
-        <h1 class="ui huge green centered header">My Itenerary</h1>
-        <div class="ui container">
-            <form class="ui equal width form">
-                <h2 class="ui medium header">Where are you going?</h2>
-                <div class="field">                  
-                  <input id="selected-city" type="text" name="city" placeholder="Select City">
-                </div>
-                <h2 class="ui medium header">When is your trip?</h2>
-                <div class="field">
-                  <label>Arrival Date</label>
-                  <input id="arrival-date" type="date" name="trip" placeholder="Arrival Date">                 
-                </div>
-                <div class="field">
-                  <label>Departure Date</label>
-                  <input id="departure-date" type="date" name="trip" placeholder="Departure Date">                 
-                </div>                
-                <button id="submit-button" class="ui large basic green button" type="submit">Submit</button>
-            </form>
-        </div>        
+      <h2 class="mainSectionHeader">My Itenerary</h2>
+      <div class="ui container">
+        <form class="ui equal width form">
+          <h3 class="qustionFont">Where are you going?</h3>
+          <div class="field">
+            <input
+              id="selected-city"
+              type="text"
+              name="city"
+              placeholder="Select City"
+            />
+          </div>
+          <h3 class="qustionFont">When is your trip?</h3>
+          <div class="field">
+            <label><h4 class="arrivalAanDeparture">Arrival Date</h4></label>
+            <input
+              id="arrival-date"
+              type="date"
+              name="trip"
+              placeholder="Arrival Date"
+            />
+          </div>
+          <div class="field">
+            <label><h4 class="arrivalAanDeparture">Departure Date</h4></label>
+            <input
+              id="departure-date"
+              type="date"
+              name="trip"
+              placeholder="Departure Date"
+            />
+          </div>
+          <button
+            id="submit-button"
+            class="large ui button"
+            type="submit"
+            style="padding: 15px"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script src="./js/activityCall.js"></script>
-</body>
+  </body>
 </html>

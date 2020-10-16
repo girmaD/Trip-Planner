@@ -1,13 +1,76 @@
 /* site-wide brand formatting */
-#navbar {
-    height: 100px;   
-    padding-top: 30px;
-    font-size: 2em;
+html {
+  background: url("../images/backgroundimage.jpg") no-repeat center fixed;
+  background-size: cover;
 }
+
+
+#navbar {
+   height: 100px;
+   padding-top: 30px;
+   font-size: 2em;
+  background-image: url("../images/navbarbackground.jpg");
+}
+
+.titleHeader {
+text-align: center;
+font-size: 4rem;
+color: rgb(68, 133, 187);
+font-family: 'Berkshire Swash',
+cursive;
+
+}
+.mainSectionHeader {
+
+font-family: 'Lobster Two',
+cursive;
+text-align: center;
+color: SlateGrey;
+font-size: 3rem;
+
+}
+
+.qustionFont {
+font-family: 'Arima Madurai',
+cursive;
+color: #000066;
+
+}
+
+.arrivalAanDeparture{
+font-family: 'Arima Madurai',
+cursive;
+color: #660066;
+
+}
+
+
+
+body{
+ background-color: ;
+  background-size: cover;
+  background-image: url("../images/planerbackground.jpg");
+ 
+}
+
+
 #main-section {
   margin: 0 auto;
-  width: 50%;   
+  width: 50%; 
+  
+
+ 
 }
+
+#submit-button{
+/* background-color:rgb(174,182,191); */
+background-color:rgb(128, 145, 163);
+color: #660066;
+background-size: auto;
+font-size: 1.1rem;
+}
+
+
 #daily-activity {
     /* margin: 0 auto; */
     width: 40rem;
