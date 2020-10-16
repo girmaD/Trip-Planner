@@ -1,29 +1,71 @@
-//a file to hold the API call for activities
-let day = moment();
-let today = moment().format("L");
-function buildZomatoUrl(){
-    let url = "https://developers.zomato.com/api/v2.1/cities?";
-    var queryParams = { "user-key": "98d23cca392225897709930429fe8c69"};
-    // queryParams.lat = lat;
-    // queryParams.lon = lon;   
-    queryParams.q = "Seattle";
-    return url + $.param(queryParams);    
-}
-// $.ajax(
-//     {
-//         url: buildZomatoUrl(),
-//         method: "GET"
-//     }
-//     ).then(function(res){
-//         console.log(res)
-//     })
-$("#plan-header").html(`${today}'s Plans`);
 
-let url = "https://www.triposo.com//api/20200803/poi.json?tag_labels=cuisine-Pizza&ag_labels=cuisine-Beer&location_id=Amsterdam&count=10&order_by=-score&fields=name,best_for,coordinates,core,id";
+let tkn = ""
+let acct = ""
+gen()
 
+//the tour call
 $.ajax({
-    url: url,
+    url: "https://www.triposo.com/api/20200803/tour.json?location_ids=" + city + "&count=10&fields=all&order_by=-score&account=" + acct + "&token=" + tkn,
     method: "GET"
-}).then(function(res){
-    console.log(res)
+}).done(function (response) {
+    console.log(response);
 });
+
+
+function gen() {
+    //make stuff harder to copy paste
+    let maker = "B"
+    maker = maker + "0"
+    maker = maker + "H"
+    maker = maker + "P"
+    maker = maker + "O"
+
+    acct = acct + maker[0]
+    acct = acct + maker[3]
+    acct = acct + maker[2]
+    acct = acct + maker[1]
+    acct = acct + maker[0]
+    acct = acct + maker[4]
+    acct = acct + maker[2]
+    acct = acct + maker[2]
+
+    let ptA = "uh5"
+    let ptB = "agyl"
+    let ptC = "izr2"
+    let ptD = "p98"
+    maker = "fvxt"
+    maker = maker + ptA + ptB + ptC + ptD
+    
+    tkn = tkn + maker[4]
+    tkn = tkn + maker[5]
+    tkn = tkn + maker[2]
+    tkn = tkn + maker[15]
+    tkn = tkn + maker[11]
+    tkn = tkn + maker[0]
+    tkn = tkn + maker[1]
+    tkn = tkn + maker[6]
+    tkn = tkn + maker[4]
+    tkn = tkn + maker[12]
+    tkn = tkn + maker[12]
+    tkn = tkn + maker[13]
+    tkn = tkn + maker[14]
+    tkn = tkn + maker[7]
+    tkn = tkn + maker[8]
+    tkn = tkn + maker[11]
+    tkn = tkn + maker[5]
+    tkn = tkn + maker[9]
+    tkn = tkn + maker[10]
+    tkn = tkn + maker[2]
+    tkn = tkn + maker[16]
+    tkn = tkn + maker[9]
+    tkn = tkn + maker[1]
+    tkn = tkn + maker[2]
+    tkn = tkn + maker[2]
+    tkn = tkn + maker[7]
+    tkn = tkn + maker[17]
+    tkn = tkn + maker[9]
+    tkn = tkn + maker[14]
+    tkn = tkn + maker[9]
+    tkn = tkn + maker[13]
+    tkn = tkn + maker[3]
+    }
