@@ -1,7 +1,4 @@
 /* site-wide brand formatting */
-
-
-
 #navbar {
    height: 110px;
    padding-top: 20px;
@@ -10,7 +7,6 @@
 
 }
 
-
 .titleHeader {
 text-align: center;
 font-size: 4rem;
@@ -18,40 +14,38 @@ color: rgb(68, 133, 187);
 font-family: 'Berkshire Swash',
 cursive;
 /* text-shadow: (20px 20px purple); */
-
 }
+
 .mainSectionHeader {
-
-font-family: 'Lobster Two',
-cursive;
-text-align: center;
-/* color:#c39bd3; */
-color: SlateGrey;
-font-size: 3rem;
-
+  font-family: 'Lobster Two',
+    cursive;
+  text-align: center;
+  color: SlateGrey;
+  font-size: 3rem;
 }
 
-.qustionFont {
-font-family: 'Arima Madurai',
-cursive;
-color: #000066;
-
+.questionFont {
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #000066;
 }
 
 .arrivalAndDeparture {
-font-family: 'Arima Madurai',
-cursive;
-color: #660066;
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #660066;
 
 }
 
+.dropdown {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 
-body{
-
-  background-size: cover;
+body {
+  background-repeat: repeat;
   background-image: url("../images/planerbackground.jpg");
-  
 }
 
 
@@ -59,9 +53,6 @@ body{
   margin: 0 auto;
   width: 50%; 
   background-color: #fcf2cf;
-  
-
- 
 }
 
 #submit-button{
@@ -74,12 +65,10 @@ font-family: 'Arima Madurai',
 cursive;
 }
 
-
-#daily-activity {
-    /* margin: 0 auto; */
-    width: 40rem;
+.daily-activity {
+  /* margin: 0 auto; */
+  width: 40rem;
 }
-
 
 .dayHeader {
   background-color: #fcf2cf;
@@ -91,17 +80,14 @@ cursive;
   font-family: 'Berkshire Swash',
     cursive;
   font-size: xx-large;
-
 }
 
 .buttonContent {
 padding: 10px 20px;
 background-color: #fcf2cf;
-
 }
 
 #add-activity {
-  
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
@@ -111,7 +97,6 @@ background-color: #fcf2cf;
 }
 
 #add-restaurant {
-  
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
@@ -123,24 +108,18 @@ background-color: #fcf2cf;
 .activityContent{
 padding:20px 30px;
 background-color: #fef9e7;
-
 }
 
 .ARheader {
 font-family: 'Arima Madurai',
 cursive;
 color: #000066;
-
 }
 
 .dayHeaderContent .weatherIcon {
 background-color: #aed6f1 ;
-
-
 }
 
 #dragonIcon { 
   float: left;
-
-
 }
