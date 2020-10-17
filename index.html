@@ -7,30 +7,23 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
   <link rel="stylesheet" href="./css/style.css" />
 
-  <!-- font for fly dragon -->
+  <!-- fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet" />
-
-  <!-- font for trip planer -->
   <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet" />
-
-  <!-- font for my trip -->
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Kaushan+Script&amp;display=swap" rel="stylesheet" />
-
   <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Piedra&display=swap" rel="stylesheet" />
-  <!-- font for question and day1  -->
   <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap" rel="stylesheet" />
-  <!-- font for day1 content -->
   <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
     rel="stylesheet" />
 </head>
 <body>
-  <!-- the navigation bar -->
+  <!-- the header -->
   <div id="navbar" class="ui inverted raised segment">
     <h1 class="titleHeader">Trip Planner</h1>
   </div>
 
   <!-- a segment that holds the form -->
-  <div class="ui container">
+  <div id="planBody" class="ui container">
     <div class="ui modal" style="max-width:50%;min-width:fit-content;">
       <div class="header" style="
       font-family: 'Arima Madurai', cursive; color: #000066;">
@@ -59,7 +52,7 @@
               </div>
               <div class="item" data-value="CancC3BAn">
                 <img class="ui mini avatar image" src="./images/flags/mexico-flag-waving-icon-32.png">
-                Cancun, Mexico
+                Cancún, Mexico
               </div>
               <div class="item" data-value="Dubai">
                 <img class="ui mini avatar image" src="./images/flags/united-arab-emirates-flag-waving-icon-32.png">
@@ -110,13 +103,13 @@
           <div class="ui header" style="font-family: 'Arima Madurai',cursive; color: #000066;">When is your trip?</h3>
             <div class="field">
               <label>
-                <h4 class="arrivalAanDeparture">Arrival Date</h4>
+                <h4 class="arrivalAndDeparture">Arrival Date</h4>
               </label>
               <input id="arrival-date" type="date" name="trip" placeholder="Arrival Date" />
             </div>
             <div class="field">
               <label>
-                <h4 class="arrivalAanDeparture">Departure Date</h4>
+                <h4 class="arrivalAndDeparture">Departure Date</h4>
               </label>
               <input id="departure-date" type="date" name="trip" placeholder="Departure Date" />
               </div>
@@ -133,7 +126,9 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script src="./js/index.js"></script>
+  <script src="./js/tourCall.js"></script>
 </body>
 </html>

@@ -1,9 +1,4 @@
 /* site-wide brand formatting */
-body {
-    background-image: url("https://images.pexels.com/photos/62693/pexels-photo-62693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
-    background-color: #cccccc;
-    background-size: cover;
-}
 #navbar {
   height: 100px;
   padding-top: 30px;
@@ -13,31 +8,31 @@ body {
 }
 
 .titleHeader {
-text-align: center;
-font-size: 4rem;
-color: rgb(68, 133, 187);
-font-family: 'Berkshire Swash',
-cursive;
+  text-align: center;
+  font-size: 4rem;
+  color: rgb(68, 133, 187);
+  font-family: 'Berkshire Swash',
+    cursive;
 }
 
 .mainSectionHeader {
-font-family: 'Lobster Two',
-cursive;
-text-align: center;
-color: SlateGrey;
-font-size: 3rem;
+  font-family: 'Lobster Two',
+    cursive;
+  text-align: center;
+  color: SlateGrey;
+  font-size: 3rem;
 }
 
 .questionFont {
-font-family: 'Arima Madurai',
-cursive;
-color: #000066;
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #000066;
 }
 
-.arrivalAanDeparture{
-font-family: 'Arima Madurai',
-cursive;
-color: #660066;
+.arrivalAndDeparture {
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #660066;
 }
 
 .dropdown {
@@ -56,18 +51,19 @@ body {
   width: 50%;
 }
 
-#submit-button{
-/* background-color:rgb(174,182,191); */
-background-color:rgb(128, 145, 163);
-color: #660066;
-background-size: auto;
-font-size: 1.1rem;
+#submit-button {
+  /* background-color:rgb(174,182,191); */
+  background-color: rgb(128, 145, 163);
+  color: #660066;
+  background-size: auto;
+  font-size: 1.1rem;
 }
 
-#daily-activity {
-    /* margin: 0 auto; */
-    width: 40rem;
+.daily-activity {
+  /* margin: 0 auto; */
+  width: 40rem;
 }
+
 /* #daily-activity .content .sub {
     border: 1px solid black;
     background-color: blanchedalmond;
