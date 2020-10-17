@@ -27,7 +27,7 @@ $("#submit-button").on("click", function () {
     let city = $("#cityPick").dropdown('get value')
     if (arrive != null && depart != null && city != null) {
         if (dayjs(arrive).isAfter(depart)) {
-            if ($("#errMsg")) {
+            if ($("#errMsg").length) {
                 return false
             } else {
                 $("#departure-date").after('<p id="errMsg" style="color:red">Departure date must be AFTER arrival date.</p>')
@@ -74,12 +74,13 @@ function createPlan(arrive, depart, city) {
 
 function writePlan(daysPlan) {
     $("#planBody").html("")
+    let weather = false
     //check if the dates are in range for weather
     if (dayjs(daysPlan.dayArr[0].date).diff(dayjs(), 'day') <= 8) {
         //yes in range, change flag and call OpenWeather for dailies
-        let weather = true
+        weather = true
     } else {
-        let weather = false
+        weather = false
     }
     let array = daysPlan.dayArr
     for (let day of array) {
@@ -98,13 +99,13 @@ function writePlan(daysPlan) {
         //check if anything saved
         newBody.append('<h4 class="ui sub header">Activities</h4>')
         //insert activity
-        if (day.act == "[]") {
-            newBody.append('<p>No activities selected.</p>')
-        } else {
+        if (day.act[0]) {
             for (i = 0; i < day.act.length; i++) {
-                newBody.append('<a target="_blank" href="' + day.act.link + '">').text(day.act.name)
-                newBody.append('<p>').text(day.act.intro)
+                newBody.append('<a target="_blank" href="' + day.act[i].link + '">' + day.act[i].name + '</a>').text(day.act[i].name)
+                newBody.append('<p>' + day.act[i].intro + '</p>')
             }
+        } else {
+            newBody.append('<p>No activities selected.</p>')
         }
         //insert restaurant
         newBody.append('<h4 class="ui sub header">Restaurants</h4>')
