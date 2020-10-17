@@ -58,13 +58,55 @@ function createPlan(arrive, depart, city) {
             daysPlan.dayArr.push(newDay)
         }
         console.log(daysPlan)
-        localStorage.setItem(JSON.stringify("tripPlanStorage"))
+        localStorage.setItem("tripPlanStorage", JSON.stringify(daysPlan))
         writePlan(daysPlan)
     });
 }
 
 function writePlan(daysPlan) {
-
+    $("#planBody").html("")
+    //check if the dates are in range for weather
+    if (dayjs(daysPlan.dayArr[0].date).diff(dayjs(), 'day') <= 8) {
+        //yes in range, change flag and call OpenWeather for dailies
+        let weather = true
+    } else {
+        let weather = false
+    }
+    let array = daysPlan.dayArr
+    for (let day of array) {
+        let date = dayjs(day.date, "YYYYMMDD")
+        let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+        let newHead = $("<div>").addClass("content")
+        if (weather = true) {
+            //insert icon from OpenWeather
+            //<img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"/>
+        }
+        newLabel = $("<div>").addClass("header")
+        newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
+        newHead.append(newLabel)
+        newCard.append(newHead)
+        let newBody = $("<div>").addClass("content")
+        //check if anything saved
+        //if not, fill body with "nothing saved yet, choose something below!"
+        //else:
+        newBody.append('<h4 class="ui sub header">Activities</h4>')
+        //insert activity
+        newBody.append('<h4 class="ui sub header">Restaurants</h4>')
+        //insert restaurant
+        newCard.append(newBody)
+        //add buttons
+        let newBtn = $("<div>").addClass("extra content")
+        //      <div class="extra content">
+        //     <button id="add-activity" class="ui basic green button">
+        //       ADD ACTIVITY
+        //     </button>
+        //     <button id="add-restaurant" class="ui basic green button">
+        //       ADD RESTAURANT
+        //     </button>
+        //   </div>
+        newCard.append(newBtn)
+        $("#planBody").append(newCard)
+    }
 }
 
 function gen() {
