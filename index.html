@@ -39,18 +39,24 @@
     />
     <!-- font for day1 content -->
     <link
-    href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
-    rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- the navigation bar -->
     <div id="navbar" class="ui inverted raised segment">
-      <h1 class="titleHeader">Trip Planner</h1>
+      <h1 style="margin-bottom: 15px" class="titleHeader">Trip Planner</h1>
+      <!-- <span><i class="fas fa-dragon" id="dragonIcon"></i></span> -->
     </div>
 
     <!-- a sedment that holds the form -->
 
-    <div id="main-section" class="ui centered raised segment">
+    <div
+      id="main-section"
+      class="ui centered raised segment"
+      style="margin-top: 30px"
+    >
       <h2 class="mainSectionHeader">My Itenerary</h2>
       <div class="ui container">
         <form class="ui equal width form">
@@ -65,7 +71,7 @@
           </div>
           <h3 class="qustionFont">When is your trip?</h3>
           <div class="field">
-            <label><h4 class="arrivalAanDeparture">Arrival Date</h4></label>
+            <label><h4 class="arrivalAndDeparture">Arrival Date</h4></label>
             <input
               id="arrival-date"
               type="date"
@@ -74,7 +80,7 @@
             />
           </div>
           <div class="field">
-            <label><h4 class="arrivalAanDeparture">Departure Date</h4></label>
+            <label><h4 class="arrivalAndDeparture">Departure Date</h4></label>
             <input
               id="departure-date"
               type="date"
@@ -86,7 +92,7 @@
             id="submit-button"
             class="large ui button"
             type="submit"
-            style="padding: 15px"
+            style="padding: 11px"
           >
             Submit
           </button>
