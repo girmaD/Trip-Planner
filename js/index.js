@@ -20,7 +20,7 @@ $(document).on("click", ".act-btn", function () {
     actSearch(city, date)
 })
 
-$("#submit-button").on("click", function () {
+$("#submit-button").on("click", function (event) {
     event.preventDefault();
     let arrive = dayjs($("#arrival-date").val(), "YYYY-MM-DD")
     let depart = dayjs($("#departure-date").val(), "YYYY-MM-DD")
@@ -43,7 +43,7 @@ function createPlan(arrive, depart, city) {
     $.ajax({
         url: "https://www.triposo.com/api/20200803/location.json?id=" + city + "&account=" + acct + "&token=" + tkn,
         method: "GET"
-    }).done(function (response) {
+    }).done(function (response) {        
         let daysPlan = {
             'city': {
                 'id': city,
@@ -55,6 +55,8 @@ function createPlan(arrive, depart, city) {
             },
             'dayArr': [],
         }
+        // console.log(daysPlan.city.coords.lat)
+        // console.log(daysPlan.city.coords.lon)
         let x = dayjs(depart).diff(arrive, 'day')
         for (i = 0; i <= x; i++) {
             let nDay = dayjs(arrive).add(i, 'day')
@@ -84,15 +86,37 @@ function writePlan(daysPlan) {
     let array = daysPlan.dayArr
     for (let day of array) {
         let date = dayjs(day.date, "YYYYMMDD")
+        let formDate = dayjs(date).format('M/D/YYYY');
+        console.log(formDate);
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
         let newHead = $("<div>").addClass("content")
+        let imgEl =$(`<img class="right floated mini image weatherIcon">`)
         if (weather = true) {
-            //insert icon from OpenWeather
-            //<img class="right floated mini ui image" src="https://openweathermap.org/img/wn/50d@2x.png"/>
+            let lat = daysPlan.city.coords.lat;
+            let lon = daysPlan.city.coords.lon;
+            let api = "99686e16316412bc9b27bd9cb868d399";
+            let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${api}`
+            $.ajax({
+                url: url,
+                method: "GET"
+            }).then(function(oneCall){
+                console.log(oneCall)
+                for(let i = 0; i < oneCall.daily.length; i++){
+                    let day = oneCall.daily[i].dt
+                    let formattedDay = convertUnixtoDate(day);
+                    // console.log(formattedDay);
+                    if(formattedDay == formDate){
+                        let icon = oneCall.daily[i].weather[0].icon
+                        let src = `https://openweathermap.org/img/wn/${icon}.png`
+                        imgEl.attr("src", src)   
+                    }
+                }                    
+            })            
         }
-        let newLabel = $("<div>").addClass("header")
+        let newLabel = $("<div>").addClass("header left floated")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
         newHead.append(newLabel)
+        newHead.append(imgEl);
         newCard.append(newHead)
         let newBody = $("<div>").addClass("content")
         //check if anything saved
@@ -124,6 +148,16 @@ function writePlan(daysPlan) {
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }
+}
+function convertUnixtoDate(unixformat) {
+    var unixTimeStamp = unixformat;
+    var timestampInMilliSeconds = unixTimeStamp * 1000;
+    var date = new Date(timestampInMilliSeconds);
+    var day = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    var month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
+    var year = date.getFullYear();
+    var formattedDate = month + '/' + day + '/' + year;
+    return (formattedDate);
 }
 
 function gen() {
