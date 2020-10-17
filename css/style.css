@@ -3,13 +3,12 @@ html {
   background: url("../images/backgroundimage.jpg") no-repeat center fixed;
   background-size: cover;
 }
-
-
 #navbar {
-   height: 100px;
-   padding-top: 30px;
-   font-size: 2em;
+  height: 100px;
+  padding-top: 30px;
+  font-size: 2em;
   background-image: url("../images/navbarbackground.jpg");
+  background-position: center;
 }
 
 .titleHeader {
@@ -18,48 +17,42 @@ font-size: 4rem;
 color: rgb(68, 133, 187);
 font-family: 'Berkshire Swash',
 cursive;
-
 }
-.mainSectionHeader {
 
+.mainSectionHeader {
 font-family: 'Lobster Two',
 cursive;
 text-align: center;
 color: SlateGrey;
 font-size: 3rem;
-
 }
 
-.qustionFont {
+.questionFont {
 font-family: 'Arima Madurai',
 cursive;
 color: #000066;
-
 }
 
 .arrivalAanDeparture{
 font-family: 'Arima Madurai',
 cursive;
 color: #660066;
-
 }
 
+.dropdown {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
-
-body{
- background-color: ;
-  background-size: cover;
+body {
+  background-repeat: repeat;
   background-image: url("../images/planerbackground.jpg");
- 
 }
 
 
 #main-section {
   margin: 0 auto;
-  width: 50%; 
-  
-
- 
+  width: 50%;
 }
 
 #submit-button{

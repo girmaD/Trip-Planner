@@ -1,100 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trip Planner</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Planner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
 
-    <!-- font for fly dragon -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Piedra&display=swap"
-      rel="stylesheet"
-    />
+  <!-- font for fly dragon -->
+  <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet" />
 
-    <!-- font for trip planer -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap"
-      rel="stylesheet"
-    />
+  <!-- font for trip planer -->
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet" />
 
-    <!-- font for my trip -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Kaushan+Script&amp;display=swap"
-      rel="stylesheet"
-    />
+  <!-- font for my trip -->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Kaushan+Script&amp;display=swap" rel="stylesheet" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Piedra&display=swap"
-      rel="stylesheet"
-    />
-    <!-- font for question and day1  -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap"
-      rel="stylesheet"
-    />
-    <!-- font for day1 content -->
-    <link
-    href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
-    rel="stylesheet"
-  </head>
-  <body>
-    <!-- the navigation bar -->
-    <div id="navbar" class="ui inverted raised segment">
-      <h1 class="titleHeader">Trip Planner</h1>
-    </div>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&family=Piedra&display=swap" rel="stylesheet" />
+  <!-- font for question and day1  -->
+  <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai&display=swap" rel="stylesheet" />
+  <!-- font for day1 content -->
+  <link href="https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@300&family=Roboto&display=swap"
+    rel="stylesheet" />
+</head>
+<body>
+  <!-- the navigation bar -->
+  <div id="navbar" class="ui inverted raised segment">
+    <h1 class="titleHeader">Trip Planner</h1>
+  </div>
 
-    <!-- a sedment that holds the form -->
-
-    <div id="main-section" class="ui centered raised segment">
-      <h2 class="mainSectionHeader">My Itenerary</h2>
-      <div class="ui container">
-        <form class="ui equal width form">
-          <h3 class="qustionFont">Where are you going?</h3>
-          <div class="field">
-            <input
-              id="selected-city"
-              type="text"
-              name="city"
-              placeholder="Select City"
-            />
+  <!-- a segment that holds the form -->
+  <div class="ui container">
+    <div class="ui modal" style="max-width:50%;min-width:fit-content;">
+      <div class="header" style="
+      font-family: 'Arima Madurai', cursive; color: #000066;">
+        Welcome to Trip Planner!
+      </div>
+      <div class="image content">
+        <div class="description">
+          <div class="ui header" style="font-family: 'Arima Madurai',cursive; color: #000066;">Where are you going?
           </div>
-          <h3 class="qustionFont">When is your trip?</h3>
-          <div class="field">
-            <label><h4 class="arrivalAanDeparture">Arrival Date</h4></label>
-            <input
-              id="arrival-date"
-              type="date"
-              name="trip"
-              placeholder="Arrival Date"
-            />
+          <div id="cityPick" class="ui fluid selection dropdown">
+            <input type="hidden" name="user">
+            <i class="dropdown icon"></i>
+            <div class="default text">Select Destination</div>
+            <div class="menu">
+              <div class="item" data-value="Barcelona">
+                <img class="ui mini avatar image" src="./images/flags/spain-flag-waving-icon-32.png">
+                Barcelona, Spain
+              </div>
+              <div class="item" data-value="wv__Beijing">
+                <img class="ui mini avatar image" src="./images/flags/china-flag-waving-icon-32.png">
+                Beijing, China
+              </div>
+              <div class="item" data-value="Cairo">
+                <img class="ui mini avatar image" src="./images/flags/egypt-flag-waving-icon-32.png">
+                Cairo, Egypt
+              </div>
+              <div class="item" data-value="CancC3BAn">
+                <img class="ui mini avatar image" src="./images/flags/mexico-flag-waving-icon-32.png">
+                Cancun, Mexico
+              </div>
+              <div class="item" data-value="Dubai">
+                <img class="ui mini avatar image" src="./images/flags/united-arab-emirates-flag-waving-icon-32.png">
+                Dubai, UAE
+              </div>
+              <div class="item" data-value="Johannesburg">
+                <img class="ui mini avatar image" src="./images/flags/south-africa-flag-waving-icon-32.png">
+                Johannesburg, S Africa
+              </div>
+              <div class="item" data-value="London">
+                <img class="ui mini avatar image" src="./images/flags/united-kingdom-flag-waving-icon-32.png">
+                London, England
+              </div>
+              <div class="item" data-value="Los_Angeles">
+                <img class="ui mini avatar image" src="./images/flags/united-states-of-america-flag-waving-icon-32.png">
+                Los Angeles, USA
+              </div>
+              <div class="item" data-value="Montreal">
+                <img class="ui mini avatar image" src="./images/flags/canada-flag-waving-icon-32.png">
+                Montreal, Canada
+              </div>
+              <div class="item" data-value="Nairobi">
+                <img class="ui mini avatar image" src="./images/flags/kenya-flag-waving-icon-32.png">
+                Nairobi, Kenya
+              </div>
+              <div class="item" data-value="Paris">
+                <img class="ui mini avatar image" src="./images/flags/france-flag-waving-icon-32.png">
+                Paris, France
+              </div>
+              <div class="item" data-value="Prague">
+                <img class="ui mini avatar image" src="./images/flags/czech-republic-flag-waving-icon-32.png">
+                Prague, Czech Republic
+              </div>
+              <div class="item" data-value="Rio_de_Janeiro">
+                <img class="ui mini avatar image" src="./images/flags/brazil-flag-waving-icon-32.png">
+                Rio de Janeiro, Brazil
+              </div>
+              <div class="item" data-value="Sydney">
+                <img class="ui mini avatar image" src="./images/flags/australia-flag-waving-icon-32.png">
+                Sydney, Australia
+              </div>
+              <div class="item" data-value="Tokyo">
+                <img class="ui mini avatar image" src="./images/flags/japan-flag-waving-icon-32.png">
+                Tokyo, Japan
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <label><h4 class="arrivalAanDeparture">Departure Date</h4></label>
-            <input
-              id="departure-date"
-              type="date"
-              name="trip"
-              placeholder="Departure Date"
-            />
-          </div>
-          <button
-            id="submit-button"
-            class="large ui button"
-            type="submit"
-            style="padding: 15px"
-          >
-            Submit
-          </button>
-        </form>
+          <div class="ui header" style="font-family: 'Arima Madurai',cursive; color: #000066;">When is your trip?</h3>
+            <div class="field">
+              <label>
+                <h4 class="arrivalAanDeparture">Arrival Date</h4>
+              </label>
+              <input id="arrival-date" type="date" name="trip" placeholder="Arrival Date" />
+            </div>
+            <div class="field">
+              <label>
+                <h4 class="arrivalAanDeparture">Departure Date</h4>
+              </label>
+              <input id="departure-date" type="date" name="trip" placeholder="Departure Date" />
+              </div>
+              </div>
+              </div>
+              </div>
+              <div class="actions">
+                <div id="submit-button" class="large ui button" style="padding: 15px">
+                  Let's Go!
+        </div>
       </div>
     </div>
+  </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script src="./js/activityCall.js"></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <script src="./js/index.js"></script>
+</body>
 </html>
