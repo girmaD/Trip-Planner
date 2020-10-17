@@ -14,6 +14,11 @@ if (localStorage.getItem("tripPlanStorage") == null) {
     writePlan(daysPlan)
 }
 
+$(document).on("click", ".act-btn", function () {
+    let date = $(this).attr("data-date");
+    let city = $(this).attr("data-city");
+    actSearch(city, date)
+})
 
 $("#submit-button").on("click", function () {
     event.preventDefault();
@@ -22,8 +27,12 @@ $("#submit-button").on("click", function () {
     let city = $("#cityPick").dropdown('get value')
     if (arrive != null && depart != null && city != null) {
         if (dayjs(arrive).isAfter(depart)) {
-            $("#departure-date").after('<p style="color:red">Departure date must be AFTER arrival date.</p>')
-            return false
+            if ($("#errMsg")) {
+                return false
+            } else {
+                $("#departure-date").after('<p id="errMsg" style="color:red">Departure date must be AFTER arrival date.</p>')
+                return false
+            }
         }
         $('.ui.modal').modal('hide');
         createPlan(arrive, depart, city)
@@ -51,8 +60,8 @@ function createPlan(arrive, depart, city) {
             let nDay = dayjs(arrive).add(i, 'day')
             let newDay = {
                 'date': dayjs(nDay).format('YYYYMMDD'),
-                'act': {},
-                'rest': {},
+                'act': [],
+                'rest': [],
                 'notes': ""
             }
             daysPlan.dayArr.push(newDay)
@@ -79,31 +88,39 @@ function writePlan(daysPlan) {
         let newHead = $("<div>").addClass("content")
         if (weather = true) {
             //insert icon from OpenWeather
-            //<img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg"/>
+            //<img class="right floated mini ui image" src="https://openweathermap.org/img/wn/50d@2x.png"/>
         }
-        newLabel = $("<div>").addClass("header")
+        let newLabel = $("<div>").addClass("header")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
         newHead.append(newLabel)
         newCard.append(newHead)
         let newBody = $("<div>").addClass("content")
         //check if anything saved
-        //if not, fill body with "nothing saved yet, choose something below!"
-        //else:
         newBody.append('<h4 class="ui sub header">Activities</h4>')
         //insert activity
-        newBody.append('<h4 class="ui sub header">Restaurants</h4>')
+        if (day.act == "[]") {
+            newBody.append('<p>No activities selected.</p>')
+        } else {
+            for (i = 0; i < day.act.length; i++) {
+                newBody.append('<a target="_blank" href="' + day.act.link + '">').text(day.act.name)
+                newBody.append('<p>').text(day.act.intro)
+            }
+        }
         //insert restaurant
+        newBody.append('<h4 class="ui sub header">Restaurants</h4>')
+        if (day.rest == "[]") {
+            newBody.append('<p>No restaurants selected.</p>')
+        } else {
+            for (i = 0; i < day.act.length; i++) {
+                newBody.append('<a target="_blank" href="' + day.rest.link + '">').text(day.act.name)
+                newBody.append('<p>').text(day.rest.intro)
+            }
+        }
         newCard.append(newBody)
         //add buttons
         let newBtn = $("<div>").addClass("extra content")
-        //      <div class="extra content">
-        //     <button id="add-activity" class="ui basic green button">
-        //       ADD ACTIVITY
-        //     </button>
-        //     <button id="add-restaurant" class="ui basic green button">
-        //       ADD RESTAURANT
-        //     </button>
-        //   </div>
+        newBtn.append('<button id="add-activity" data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="act-btn ui basic green button">ADD ACTIVITY</button>')
+        newBtn.append('<button id="add-activity" data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="rest-btn ui basic green button">ADD RESTAURANT</button>')
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }
