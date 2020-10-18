@@ -1,7 +1,4 @@
-# Trip Planner
-
-Flag icons sourced from : https://www.countryflags.com/en/
-
+<!-- Flag icons sourced from : https://www.countryflags.com/en/ -->
 # Trip Planner
 * View the [Github Repo](https://github.com/girmaD/Trip-Planner/tree/main)
 * View the [Deployed Application](https://girmad.github.io/Trip-Planner/)
@@ -11,6 +8,7 @@ Flag icons sourced from : https://www.countryflags.com/en/
 * [Snap shot of the UI](#snap-shot-of-the-UI)
 * [How To Use The App](#How-To-Use-The-App)
 * [Technologies Used](#Technologies-Used)
+* [API's Used](#API's-Used)
 * [Contact](Contact)
 
 ## Introduction
@@ -61,9 +59,9 @@ Happy Trip!
 
 ## API's Used
 
-- Triposo Api - to get information on activities and restaurants
-- openweathermap Api - to get information on weather conditions
+- Triposo Api - to get information on activities and restaurants.
+- openweathermap Api - to get information on weather conditions.
 
 ## Contact
 
-Should you have any questions about this repo or the deployed page, contact me on [girma.derib@gmail.com](mailto:girma.derib@gmail.com), [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
+Should you have any questions about this repo or the deployed page, contact us on [girma.derib@gmail.com](mailto:girma.derib@gmail.com), [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
