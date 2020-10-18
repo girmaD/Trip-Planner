@@ -17,22 +17,23 @@
     rel="stylesheet" />
 </head>
 <body>
-  <!-- the header -->
-  <div id="navbar" class="ui inverted raised segment">
-    <h1 class="titleHeader">Trip Planner</h1>
-  </div>
+    <!-- the navigation bar -->
+    <div id="navbar" class="ui inverted raised segment">
+      <h1 style="margin-bottom: 15px" class="titleHeader">Trip Planner</h1>
+      <!-- <span><i class="fas fa-dragon" id="dragonIcon"></i></span> -->
+    </div>
 
-  <!-- a segment that holds the form -->
-  <div id="planBody" class="ui container">
-    <div class="ui modal" style="max-width:50%;min-width:fit-content;">
-      <div class="header" style="
-      font-family: 'Arima Madurai', cursive; color: #000066;">
-        Welcome to Trip Planner!
-      </div>
-      <div class="image content">
-        <div class="description">
-          <div class="ui header" style="font-family: 'Arima Madurai',cursive; color: #000066;">Where are you going?
-          </div>
+    <!-- a sedment that holds the form -->
+<div id="planBody" class="ui container">
+    <div
+      id="main-section"
+      class="ui centered raised segment modal"
+      style="margin-top: 30px"
+    >
+      <h2 class="mainSectionHeader">My Itenerary</h2>
+      <div class="ui container">
+        <form class="ui equal width form">
+          <h3 class="questionFont">Where are you going?</h3>
           <div id="cityPick" class="ui fluid selection dropdown">
             <input type="hidden" name="user">
             <i class="dropdown icon"></i>
@@ -42,13 +43,13 @@
                 <img class="ui mini avatar image" src="./images/flags/ethiopia-flag-waving-icon-32.png">
                 Addis Ababa, Ethiopia
               </div>
+              <div class="item" data-value="Bangkok">
+                <img class="ui mini avatar image" src="./images/flags/thailand-flag-waving-icon-32.png">
+                Bangkok, Thailand
+              </div>
               <div class="item" data-value="Barcelona">
                 <img class="ui mini avatar image" src="./images/flags/spain-flag-waving-icon-32.png">
                 Barcelona, Spain
-              </div>
-              <div class="item" data-value="wv__Beijing">
-                <img class="ui mini avatar image" src="./images/flags/china-flag-waving-icon-32.png">
-                Beijing, China
               </div>
               <div class="item" data-value="Cairo">
                 <img class="ui mini avatar image" src="./images/flags/egypt-flag-waving-icon-32.png">
@@ -104,28 +105,35 @@
               </div>
             </div>
           </div>
-          <div class="ui header" style="font-family: 'Arima Madurai',cursive; color: #000066;">When is your trip?</h3>
-            <div class="field">
-              <label>
-                <h4 class="arrivalAndDeparture">Arrival Date</h4>
-              </label>
-              <input id="arrival-date" type="date" name="trip" placeholder="Arrival Date" />
-            </div>
-            <div class="field">
-              <label>
-                <h4 class="arrivalAndDeparture">Departure Date</h4>
-              </label>
-              <input id="departure-date" type="date" name="trip" placeholder="Departure Date" />
-              </div>
-              </div>
-              </div>
-              </div>
-              <div class="actions">
-                <div id="submit-button" class="large ui button" style="padding: 15px">
-                  Let's Go!
-        </div>
+          <h3 class="questionFont">When is your trip?</h3>
+          <div class="field">
+            <label><h4 class="arrivalAndDeparture">Arrival Date</h4></label>
+            <input
+              id="arrival-date"
+              type="date"
+              name="trip"
+              placeholder="Arrival Date"
+            />
+          </div>
+          <div class="field">
+            <label><h4 class="arrivalAndDeparture">Departure Date</h4></label>
+            <input
+              id="departure-date"
+              type="date"
+              name="trip"
+              placeholder="Departure Date"
+            />
+          </div>
+          <button
+            id="submit-button"
+            class="large ui button"
+            style="padding: 11px"
+          >
+            Submit
+          </button>
+        </form>
       </div>
-
+</div>
     </div>
   </div>
 
@@ -134,5 +142,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
   <script src="./js/index.js"></script>
   <script src="./js/tourCall.js"></script>
+  <script src="./js/restCall.js"></script>
 </body>
 </html>
