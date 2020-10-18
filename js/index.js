@@ -54,9 +54,7 @@ function createPlan(arrive, depart, city) {
                 }
             },
             'dayArr': [],
-        }
-        // console.log(daysPlan.city.coords.lat)
-        // console.log(daysPlan.city.coords.lon)
+        }        
         let x = dayjs(depart).diff(arrive, 'day')
         for (i = 0; i <= x; i++) {
             let nDay = dayjs(arrive).add(i, 'day')
@@ -86,11 +84,16 @@ function writePlan(daysPlan) {
     let array = daysPlan.dayArr
     for (let day of array) {
         let date = dayjs(day.date, "YYYYMMDD")
-        let formDate = dayjs(date).format('M/D/YYYY');
-        console.log(formDate);
+        //create a formated date variable for later comparison and call it formDate 
+        let formDate = dayjs(date).format('M/D/YYYY');               
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
-        let newHead = $("<div>").addClass("content")
+        let newHead = $("<div>").addClass("content dayHeaderContent")
+        //create img tag with the classes included as shown
         let imgEl =$(`<img class="right floated mini image weatherIcon">`)
+        // create a src attribute to make the image a question mark
+        let src = "https://img.icons8.com/clouds/45/000000/question-mark.png";
+        imgEl.attr("src", src)  
+        //if the dates choses are with in the range of weather data, weather icons will replace the question mark img
         if (weather = true) {
             let lat = daysPlan.city.coords.lat;
             let lon = daysPlan.city.coords.lon;
@@ -99,20 +102,23 @@ function writePlan(daysPlan) {
             $.ajax({
                 url: url,
                 method: "GET"
-            }).then(function(oneCall){
-                console.log(oneCall)
-                for(let i = 0; i < oneCall.daily.length; i++){
+            }).then(function(oneCall){   
+                console.log(oneCall)     
+                let i = 0;        
+                while(i < oneCall.daily.length){
                     let day = oneCall.daily[i].dt
-                    let formattedDay = convertUnixtoDate(day);
-                    // console.log(formattedDay);
+                    let formattedDay = convertUnixtoDate(day); 
+                    console.log(formattedDay)                   
                     if(formattedDay == formDate){
                         let icon = oneCall.daily[i].weather[0].icon
-                        let src = `https://openweathermap.org/img/wn/${icon}.png`
+                        src = `https://openweathermap.org/img/wn/${icon}.png`
                         imgEl.attr("src", src)   
-                    }
-                }                    
+                    }                    
+                    i++
+                }                   
             })            
         }
+        
         let newLabel = $("<div>").addClass("header left floated")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
         newHead.append(newLabel)
@@ -149,9 +155,8 @@ function writePlan(daysPlan) {
         $("#planBody").append(newCard)
     }
 }
-function convertUnixtoDate(unixformat) {
-    var unixTimeStamp = unixformat;
-    var timestampInMilliSeconds = unixTimeStamp * 1000;
+function convertUnixtoDate(unix) {    
+    var timestampInMilliSeconds = unix * 1000;
     var date = new Date(timestampInMilliSeconds);
     var day = (date.getDate() < 10 ? '0' : '') + date.getDate();
     var month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
