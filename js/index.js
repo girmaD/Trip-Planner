@@ -74,6 +74,7 @@ function createPlan(arrive, depart, city) {
 
 function writePlan(daysPlan) {
     $("#planBody").html("")
+    //set flag for weather
     let weather = false
     //check if the dates are in range for weather
     if (dayjs(daysPlan.dayArr[0].date).diff(dayjs(), 'day') <= 8) {
@@ -86,42 +87,45 @@ function writePlan(daysPlan) {
     for (let day of array) {
         let date = dayjs(day.date, "YYYYMMDD")
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
-        let newHead = $("<div>").addClass("content")
+        newCard.attr("style", "margin-top: 30px; padding: 0px; background-color: #fcf2cf;")
+        let newHead = $("<div>").addClass("content dayHeaderContent")
         if (weather = true) {
             //insert icon from OpenWeather
             //<img class="right floated mini ui image" src="https://openweathermap.org/img/wn/50d@2x.png"/>
         }
-        let newLabel = $("<div>").addClass("header")
+        let newLabel = $("<div>").addClass("dayHeader")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
         newHead.append(newLabel)
         newCard.append(newHead)
-        let newBody = $("<div>").addClass("content")
-        //check if anything saved
-        newBody.append('<h4 class="ui sub header">Activities</h4>')
+        let newBody = $("<div>").addClass("activityContent")
+        let newSection = $("<div>").addClass("ui feed")
+        newSection.append('<h5 class="ARheader">Activities</h5>')
         //insert activity
         if (day.act[0]) {
             for (i = 0; i < day.act.length; i++) {
-                newBody.append('<a target="_blank" href="' + day.act[i].link + '">' + day.act[i].name + '</a>').text(day.act[i].name)
-                newBody.append('<p>' + day.act[i].intro + '</p>')
+                newSection.append('<a target="_blank" href="' + day.act[i].link + '">' + day.act[i].name + '</a>')
+                newSection.append('<p>' + day.act[i].intro + '</p>')
             }
         } else {
-            newBody.append('<p>No activities selected.</p>')
+            newSection.append('<p>No activities selected.</p>')
         }
+        newBody.append(newSection)
         //insert restaurant
-        newBody.append('<h4 class="ui sub header">Restaurants</h4>')
-        if (day.rest == "[]") {
-            newBody.append('<p>No restaurants selected.</p>')
-        } else {
+        newSection = $("<div>").addClass("ui feed")
+        newBody.append('<h5 class="ARheader">Restaurants</h5>')
+        if (day.rest[0]) {
             for (i = 0; i < day.act.length; i++) {
                 newBody.append('<a target="_blank" href="' + day.rest.link + '">').text(day.act.name)
                 newBody.append('<p>').text(day.rest.intro)
             }
+        } else {
+            newBody.append('<p>No restaurants selected.</p>')
         }
         newCard.append(newBody)
         //add buttons
-        let newBtn = $("<div>").addClass("extra content")
-        newBtn.append('<button id="add-activity" data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="act-btn ui basic green button">ADD ACTIVITY</button>')
-        newBtn.append('<button id="add-activity" data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="rest-btn ui basic green button">ADD RESTAURANT</button>')
+        let newBtn = $("<div>").addClass("buttonContent")
+        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
+        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="rest-btn ui button">ADD RESTAURANT</button>')
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }

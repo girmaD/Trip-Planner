@@ -55,8 +55,7 @@ body {
   background-color: #fcf2cf;
 }
 
-#submit-button{
-
+#submit-button {
 background-color:#abb2b9;
 color: #660066;
 background-size: auto;
@@ -67,13 +66,14 @@ cursive;
 
 .daily-activity {
   /* margin: 0 auto; */
+background-color: #fcf2cf;
   width: 40rem;
 }
 
 .dayHeader {
   background-color: #fcf2cf;
   padding: 15px 20px;
-  font-size: larger;
+  font-size: medium;
   color: SlateGrey;
   /* color:#c39bd3; */
   /* color: rgb(68, 133, 187); */
@@ -87,7 +87,7 @@ padding: 10px 20px;
 background-color: #fcf2cf;
 }
 
-#add-activity {
+.buttonContent .act-btn {
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
@@ -96,7 +96,7 @@ background-color: #fcf2cf;
   cursive;
 }
 
-#add-restaurant {
+.buttonContent .rest-btn {
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
