@@ -68,3 +68,8 @@ body {
     border: 1px solid black;
     background-color: blanchedalmond;
 } */
+
+.dayHeaderContent .weatherIcon {
+  background-color: #aed6f1 ;
+}
+
