@@ -5,7 +5,7 @@
 ## Table Of Contents
 * [Introduction](#Introduction)
 * [Objective](#Objective)
-* [Snap shot of the UI](#snap-shot-of-the-UI)
+<!-- * [Snap shot of the UI](#snap-shot-of-the-UI) -->
 * [How To Use The App](#How-To-Use-The-App)
 * [Technologies Used](#Technologies-Used)
 * [API's Used](#API's-Used)
@@ -22,9 +22,9 @@ This app runs in the browser and feature dynamically updated HTML and CSS powere
 
 The objective of this application to create a trip planner application that provides information about a range of activities and restaurants for a city of a user's choosing from city options provided as well as to provide weather conditions so that a users takes weather condition in to account when choosing activities.
 
-## Snap shot of the UI
+<!-- ## Snap shot of the UI
 
-![Alt text](./Assets/weather.png)
+![Alt text](./Assets/weather.png) -->
 
 ## How To Use The App
 
