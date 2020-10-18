@@ -1,1 +1,158 @@
 /* site-wide brand formatting */
+#navbar {
+   height: 110px;
+   padding-top: 20px;
+   font-size: 2em;
+  background-image: url("../images/navbarbackground.jpg");
+
+}
+
+.titleHeader {
+text-align: center;
+font-size: 4rem;
+color: rgb(68, 133, 187); 
+font-family: 'Berkshire Swash',
+cursive;
+/* text-shadow: (20px 20px purple); */
+}
+
+.mainSectionHeader {
+  font-family: 'Lobster Two',
+    cursive;
+  text-align: center;
+  color: SlateGrey;
+  font-size: 3rem;
+}
+
+.questionFont {
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #000066;
+}
+
+.arrivalAndDeparture {
+  font-family: 'Arima Madurai',
+    cursive;
+  color: #660066;
+
+}
+
+.dropdown {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+body {
+  background-repeat: repeat;
+  background-image: url("../images/planerbackground.jpg");
+}
+
+
+#main-section {
+  margin: 0 auto;
+  width: 50%; 
+  background-color: #fcf2cf;
+}
+
+#submit-button {
+background-color:#abb2b9;
+color: #660066;
+background-size: auto;
+font-size: 1.2rem;
+font-family: 'Arima Madurai',
+cursive;
+}
+
+.daily-activity {
+  /* margin: 0 auto; */
+background-color: #fcf2cf;
+  width: 40rem;
+}
+
+ul {
+  list-style-type: circle;
+}
+
+.srchHeader {
+  font-size: medium;
+  padding: 15px 20px;
+  color: SlateGrey;
+  /* color:#c39bd3; */
+  /* color: rgb(68, 133, 187); */
+  font-family: 'Berkshire Swash',
+    cursive;
+  font-size: x-large;
+}
+
+.dayHeader {
+  background-color: #fcf2cf;
+  padding: 15px 20px;
+  font-size: medium;
+  color: SlateGrey;
+  /* color:#c39bd3; */
+  /* color: rgb(68, 133, 187); */
+  font-family: 'Berkshire Swash',
+    cursive;
+  font-size: xx-large;
+}
+
+.buttonContent {
+padding: 10px 20px;
+background-color: #fcf2cf;
+}
+
+.buttonContent .act-btn {
+  background-color:#abb2b9;
+  color: #660066;
+  background-size: auto;
+  font-size: 0.9rem;
+  font-family: 'Arima Madurai',
+  cursive;
+}
+
+.buttonContent .rest-btn {
+  background-color:#abb2b9;
+  color: #660066;
+  background-size: auto;
+ font-size: 0.9rem;
+ font-family: 'Arima Madurai',
+ cursive;
+ }
+
+ .buttonContent .rest-add {
+   background-color: #abb2b9;
+   color: #660066;
+   background-size: auto;
+   font-size: 1rem;
+   font-family: 'Arima Madurai',
+     cursive;
+ }
+
+ .buttonContent .act-add {
+   background-color: #abb2b9;
+   color: #660066;
+   background-size: auto;
+   font-size: 0.9rem;
+  font-family: 'Arima Madurai',
+  cursive;
+}
+
+.activityContent{
+padding:20px 30px;
+background-color: #fef9e7;
+}
+
+.ARheader {
+font-family: 'Arima Madurai',
+cursive;
+color: #000066;
+}
+
+.dayHeaderContent .weatherIcon {
+background-color: #aed6f1 ;
+}
+
+#dragonIcon { 
+  float: left;
+}
