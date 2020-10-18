@@ -25,7 +25,7 @@ $(document).on("click", ".rest-btn", function () {
     restSearch(city, date)
 })
 
-$("#submit-button").on("click", function () {
+$("#submit-button").on("click", function (event) {
     event.preventDefault();
     let arrive = dayjs($("#arrival-date").val(), "YYYY-MM-DD")
     let depart = dayjs($("#departure-date").val(), "YYYY-MM-DD")
@@ -48,7 +48,7 @@ function createPlan(arrive, depart, city) {
     $.ajax({
         url: "https://www.triposo.com/api/20200803/location.json?id=" + city + "&account=" + acct + "&token=" + tkn,
         method: "GET"
-    }).done(function (response) {
+    }).done(function (response) {        
         let daysPlan = {
             'city': {
                 'id': city,
@@ -59,7 +59,7 @@ function createPlan(arrive, depart, city) {
                 }
             },
             'dayArr': [],
-        }
+        }        
         let x = dayjs(depart).diff(arrive, 'day')
         for (i = 0; i <= x; i++) {
             let nDay = dayjs(arrive).add(i, 'day')
@@ -93,16 +93,45 @@ function writePlan(daysPlan) {
     for (let day of array) {
         console.log(day)
         let date = dayjs(day.date, "YYYYMMDD")
+        //create a formated date variable for later comparison and call it formDate 
+        let formDate = dayjs(date).format('M/D/YYYY');               
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
         newCard.attr("style", "margin-top: 30px; padding: 0px; background-color: #fcf2cf;")
         let newHead = $("<div>").addClass("content dayHeaderContent")
+        //create img tag with the classes included as shown
+        let imgEl =$(`<img class="right floated mini image weatherIcon">`)
+        // create a src attribute to make the image a question mark
+        let src = "https://img.icons8.com/clouds/45/000000/question-mark.png";
+        imgEl.attr("src", src)  
+        //if the dates choses are with in the range of weather data, weather icons will replace the question mark img
         if (weather = true) {
-            //insert icon from OpenWeather
-            //<img class="right floated mini ui image" src="https://openweathermap.org/img/wn/50d@2x.png"/>
+            let lat = daysPlan.city.coords.lat;
+            let lon = daysPlan.city.coords.lon;
+            let api = "99686e16316412bc9b27bd9cb868d399";
+            let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${api}`
+            $.ajax({
+                url: url,
+                method: "GET"
+            }).then(function(oneCall){   
+                console.log(oneCall)     
+                let i = 0;        
+                while(i < oneCall.daily.length){
+                    let day = oneCall.daily[i].dt
+                    let formattedDay = convertUnixtoDate(day); 
+                    console.log(formattedDay)                   
+                    if(formattedDay == formDate){
+                        let icon = oneCall.daily[i].weather[0].icon
+                        src = `https://openweathermap.org/img/wn/${icon}.png`
+                        imgEl.attr("src", src)   
+                    }                    
+                    i++
+                }                   
+            })            
         }
-        let newLabel = $("<div>").addClass("dayHeader")
+        let newLabel = $("<div>").addClass("dayHeader left floated")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
         newHead.append(newLabel)
+        newHead.append(imgEl);
         newCard.append(newHead)
         let newBody = $("<div>").addClass("activityContent")
         let newSection = $("<div>").addClass("ui feed")
@@ -137,6 +166,15 @@ function writePlan(daysPlan) {
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }
+}
+function convertUnixtoDate(unix) {    
+    var timestampInMilliSeconds = unix * 1000;
+    var date = new Date(timestampInMilliSeconds);
+    var day = (date.getDate() < 10 ? '0' : '') + date.getDate();
+    var month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
+    var year = date.getFullYear();
+    var formattedDate = month + '/' + day + '/' + year;
+    return (formattedDate);
 }
 
 function gen() {
