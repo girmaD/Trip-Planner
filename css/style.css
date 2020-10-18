@@ -70,6 +70,21 @@ background-color: #fcf2cf;
   width: 40rem;
 }
 
+ul {
+  list-style-type: circle;
+}
+
+.srchHeader {
+  font-size: medium;
+  padding: 15px 20px;
+  color: SlateGrey;
+  /* color:#c39bd3; */
+  /* color: rgb(68, 133, 187); */
+  font-family: 'Berkshire Swash',
+    cursive;
+  font-size: x-large;
+}
+
 .dayHeader {
   background-color: #fcf2cf;
   padding: 15px 20px;
@@ -91,7 +106,7 @@ background-color: #fcf2cf;
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-family: 'Arima Madurai',
   cursive;
 }
@@ -100,9 +115,27 @@ background-color: #fcf2cf;
   background-color:#abb2b9;
   color: #660066;
   background-size: auto;
- font-size: 0.8rem;
+ font-size: 0.9rem;
  font-family: 'Arima Madurai',
  cursive;
+ }
+
+ .buttonContent .rest-add {
+   background-color: #abb2b9;
+   color: #660066;
+   background-size: auto;
+   font-size: 1rem;
+   font-family: 'Arima Madurai',
+     cursive;
+ }
+
+ .buttonContent .act-add {
+   background-color: #abb2b9;
+   color: #660066;
+   background-size: auto;
+   font-size: 0.9rem;
+  font-family: 'Arima Madurai',
+  cursive;
 }
 
 .activityContent{

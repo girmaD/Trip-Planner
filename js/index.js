@@ -8,7 +8,6 @@ if (localStorage.getItem("tripPlanStorage") == null) {
     $('.ui.dropdown').dropdown()
     $('.ui.modal').modal('show');
 } else {
-    console.log("nope")
     //if plan exists, parse it and call function to write plan cards
     let daysPlan = JSON.parse(localStorage.getItem("tripPlanStorage"))
     writePlan(daysPlan)
@@ -18,6 +17,12 @@ $(document).on("click", ".act-btn", function () {
     let date = $(this).attr("data-date");
     let city = $(this).attr("data-city");
     actSearch(city, date)
+})
+
+$(document).on("click", ".rest-btn", function () {
+    let date = $(this).attr("data-date");
+    let city = $(this).attr("data-city");
+    restSearch(city, date)
 })
 
 $("#submit-button").on("click", function () {
@@ -74,6 +79,7 @@ function createPlan(arrive, depart, city) {
 
 function writePlan(daysPlan) {
     $("#planBody").html("")
+    $(window).scrollTop(0)
     //set flag for weather
     let weather = false
     //check if the dates are in range for weather
@@ -85,6 +91,7 @@ function writePlan(daysPlan) {
     }
     let array = daysPlan.dayArr
     for (let day of array) {
+        console.log(day)
         let date = dayjs(day.date, "YYYYMMDD")
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
         newCard.attr("style", "margin-top: 30px; padding: 0px; background-color: #fcf2cf;")
@@ -112,15 +119,16 @@ function writePlan(daysPlan) {
         newBody.append(newSection)
         //insert restaurant
         newSection = $("<div>").addClass("ui feed")
-        newBody.append('<h5 class="ARheader">Restaurants</h5>')
+        newSection.append('<h5 class="ARheader">Restaurants</h5>')
         if (day.rest[0]) {
-            for (i = 0; i < day.act.length; i++) {
-                newBody.append('<a target="_blank" href="' + day.rest.link + '">').text(day.act.name)
-                newBody.append('<p>').text(day.rest.intro)
+            for (i = 0; i < day.rest.length; i++) {
+                newSection.append('<a target="_blank" href="' + day.rest[i].link + '">' + day.rest[i].name + '</a>')
+                newSection.append('<p>' + day.rest[i].intro + '</p>')
             }
         } else {
-            newBody.append('<p>No restaurants selected.</p>')
+            newSection.append('<p>No restaurants selected.</p>')
         }
+        newBody.append(newSection)
         newCard.append(newBody)
         //add buttons
         let newBtn = $("<div>").addClass("buttonContent")
