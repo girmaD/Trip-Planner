@@ -12,7 +12,7 @@
 * [Contact](Contact)
 
 ## Introduction
-Planning a trip is not an easy task. Getting reliable information of activities and restautants at a given city is eases some of the headaches with planning trips. Studies show that most people plan their stay on their way to their trip. Isn't it better if a user is given an application that provides activities, restaurants for a given city as well as a weather icon showing what kind of weather awaits a user on each day of his/her stay. Our Application does exactly that!
+Planning a trip is not an easy task. Getting reliable information of activities and restautants at a given city eases some of the headaches with planning trips. Studies show that most people plan their stay on their way to their trip. Isn't it better if a user is given an application that provides activities, restaurants for a given city as well as a weather icon showing what kind of weather awaits a user on each day of his/her stay. Our Application does exactly that!
 
 This application presents a trip planner. It provides a user with an important information to plan his/her trip. A user selects the city of his/her choosing from the option of cities provided and specifies the dates of his/her arival and departure to that city. The application renders an option for the user to add activities and/or restaurants in all the days of his/her stay. The application also presents a weather icon for each day of the stay - paving the way for the user to choose either indoor or outdoor activities depending on the weather. In a rainy day, a user may choose indoor activities from an array of avtivities rendered by the application.
 
@@ -21,10 +21,6 @@ This app runs in the browser and feature dynamically updated HTML and CSS powere
 ## Objective
 
 The objective of this application to create a trip planner application that provides information about a range of activities and restaurants for a city of a user's choosing from city options provided as well as to provide weather conditions so that a users takes weather condition in to account when choosing activities.
-
-<!-- ## Snap shot of the UI
-
-![Alt text](./Assets/weather.png) -->
 
 ## How To Use The App
 
@@ -64,4 +60,11 @@ Happy Trip!
 
 ## Contact
 
-Should you have any questions about this repo or the deployed page, contact us on [girma.derib@gmail.com](mailto:girma.derib@gmail.com), [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
+Should you have any questions about this repo or the deployed page, contact any of us
+
+- Kristine Horton at [kristinehrtn@yahoo.com](mailto:kristinehrtn@yahoo.com)
+- April Yang []() 
+- Christina Engelhardt at [cjengelhardt@gmail.com](mailto:cjengelhardt@gmail.com)
+- Girma Ebssa at [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
+
+
