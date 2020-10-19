@@ -83,19 +83,26 @@ function writePlan(daysPlan) {
     //set flag for weather
     let weather = false
     //check if the dates are in range for weather
-    if (dayjs(daysPlan.dayArr[0].date).diff(dayjs(), 'day') <= 8) {
-        //yes in range, change flag and call OpenWeather for dailies
-        weather = true
+    if (dayjs(daysPlan.dayArr[0].date, "YYYYMMDD").diff(dayjs(), 'day') <= 8) {
+        //yes in range, call OpenWeather for dailies
+        let lat = daysPlan.city.coords.lat;
+        let lon = daysPlan.city.coords.lon;
+        let api = "99686e16316412bc9b27bd9cb868d399";
+        let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${api}`
+        $.ajax({
+            url: url,
+            method: "GET",
+            async: false
+        }).done(function (oneCall) {
+            weather = oneCall.daily
+        })
     } else {
         weather = false
     }
     let array = daysPlan.dayArr
     for (let day of array) {
-        console.log(day)
         let date = dayjs(day.date, "YYYYMMDD")
-        //create a formated date variable for later comparison and call it formDate 
-        let formDate = dayjs(date).format('M/D/YYYY');               
-        let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+        newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
         newCard.attr("style", "margin-top: 30px; padding: 0px; background-color: #fcf2cf;")
         let newHead = $("<div>").addClass("content dayHeaderContent")
         //create img tag with the classes included as shown
@@ -104,29 +111,19 @@ function writePlan(daysPlan) {
         let src = "https://img.icons8.com/clouds/45/000000/question-mark.png";
         imgEl.attr("src", src)  
         //if the dates choses are with in the range of weather data, weather icons will replace the question mark img
-        if (weather = true) {
-            let lat = daysPlan.city.coords.lat;
-            let lon = daysPlan.city.coords.lon;
-            let api = "99686e16316412bc9b27bd9cb868d399";
-            let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${api}`
-            $.ajax({
-                url: url,
-                method: "GET"
-            }).then(function(oneCall){   
-                console.log(oneCall)     
-                let i = 0;        
-                while(i < oneCall.daily.length){
-                    let day = oneCall.daily[i].dt
-                    let formattedDay = convertUnixtoDate(day); 
-                    console.log(formattedDay)                   
-                    if(formattedDay == formDate){
-                        let icon = oneCall.daily[i].weather[0].icon
+        if (weather != false) {
+                let i = 0;
+                while (i < weather.length) {
+                    let wDay = dayjs.unix(weather[i].dt)
+                    wDay = dayjs(wDay).subtract(1, 'day')
+                    let formattedDay = dayjs(wDay).format("YYYYMMDD");
+                    if (formattedDay == day.date) {
+                        let icon = weather[i].weather[0].icon
                         src = `https://openweathermap.org/img/wn/${icon}.png`
-                        imgEl.attr("src", src)   
-                    }                    
+                        imgEl.attr("src", src)
+                    }
                     i++
-                }                   
-            })            
+                }
         }
         let newLabel = $("<div>").addClass("dayHeader left floated")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
