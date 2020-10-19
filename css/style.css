@@ -55,6 +55,18 @@ body {
   background-color: #fcf2cf;
 }
 
+@media screen and (max-width: 992px) {
+  #main-section {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #main-section {
+    width: 90%;
+  }
+}
+
 #submit-button {
 background-color:#abb2b9;
 color: #660066;
