@@ -1,17 +1,26 @@
-function restSearch(city, date) {
+function restSearch(city, date, cityName) {
     //rest
     $.ajax({
         url: "https://www.triposo.com/api/20200803/poi.json?location_id=" + city + "&tag_labels=eatingout&count=25&fields=all&order_by=-score&account=" + acct + "&token=" + tkn,
         method: "GET"
     }).done(function (response) {
-        writeRest(response.results, date);
+        writeRest(response.results, date, cityName);
     });
 }
 
 
-function writeRest(results, date) {
+function writeRest(results, date, cityName) {
     $("#planBody").html("")
     $(window).scrollTop(0)
+    let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+    newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
+    let newTitle = $("<h2>").addClass("mainSectionHeader")
+    newTitle.html('Top Restaurants in ' + cityName)
+    newCard.append(newTitle)
+    let subTitle = $("<button>").addClass("resetBtn")
+    subTitle.html("Click here to go back.")
+    newCard.append(subTitle)
+    $("#planBody").append(newCard)
     let x = 0
     for (let rest of results) {
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")

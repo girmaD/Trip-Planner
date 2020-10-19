@@ -13,16 +13,23 @@ if (localStorage.getItem("tripPlanStorage") == null) {
     writePlan(daysPlan)
 }
 
+$(document).on("click", ".resetBtn", function () {
+    localStorage.removeItem("tripPlanStorage")
+    location.reload()
+})
+
 $(document).on("click", ".act-btn", function () {
     let date = $(this).attr("data-date");
     let city = $(this).attr("data-city");
-    actSearch(city, date)
+    let cityName = $(this).attr("data-name");
+    actSearch(city, date, cityName)
 })
 
 $(document).on("click", ".rest-btn", function () {
     let date = $(this).attr("data-date");
     let city = $(this).attr("data-city");
-    restSearch(city, date)
+    let cityName = $(this).attr("data-name");
+    restSearch(city, date, cityName)
 })
 
 $("#submit-button").on("click", function (event) {
@@ -80,6 +87,15 @@ function createPlan(arrive, depart, city) {
 function writePlan(daysPlan) {
     $("#planBody").html("")
     $(window).scrollTop(0)
+    let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+    newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
+    let newTitle = $("<h2>").addClass("mainSectionHeader")
+    newTitle.html('My Trip to ' + daysPlan.city.name + ': ' + dayjs(daysPlan.dayArr[0].date).format('M/D/YY') + ' to ' + dayjs(daysPlan.dayArr[daysPlan.dayArr.length - 1].date).format('M/D/YY'))
+    newCard.append(newTitle)
+    let subTitle = $("<button>").addClass("resetBtn")
+    subTitle.html("Click here to start over.")
+    newCard.append(subTitle)
+    $("#planBody").append(newCard)
     //set flag for weather
     let weather = false
     //check if the dates are in range for weather
@@ -158,20 +174,11 @@ function writePlan(daysPlan) {
         newCard.append(newBody)
         //add buttons
         let newBtn = $("<div>").addClass("buttonContent")
-        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
-        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="rest-btn ui button">ADD RESTAURANT</button>')
+        newBtn.append('<button data-city=' + daysPlan.city.id + ' data-name=' + daysPlan.city.name + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
+        newBtn.append('<button data-city=' + daysPlan.city.id + ' data-name=' + daysPlan.city.name + '  data-date=' + day.date + ' class="rest-btn ui button">ADD RESTAURANT</button>')
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }
-}
-function convertUnixtoDate(unix) {    
-    var timestampInMilliSeconds = unix * 1000;
-    var date = new Date(timestampInMilliSeconds);
-    var day = (date.getDate() < 10 ? '0' : '') + date.getDate();
-    var month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
-    var year = date.getFullYear();
-    var formattedDate = month + '/' + day + '/' + year;
-    return (formattedDate);
 }
 
 function gen() {

@@ -85,6 +85,18 @@ ul {
   font-size: x-large;
 }
 
+.resetBtn {
+  background-color: #fcf2cf;
+  color: #660066;
+  background-size: auto;
+  font-size: 0.8rem;
+  font-family: 'Arima Madurai',
+    cursive;
+  width: fit-content;
+  align-self: flex-end;
+  border-radius: 10px;
+}
+
 .dayHeader {
   background-color: #fcf2cf;
   padding: 15px 20px;
