@@ -13,8 +13,12 @@ if (localStorage.getItem("tripPlanStorage") == null) {
     writePlan(daysPlan)
 }
 
-$(document).on("click", ".resetBtn", function () {
+$(document).on("click", ".newBtn", function () {
     localStorage.removeItem("tripPlanStorage")
+    location.reload()
+})
+
+$(document).on("click", ".backBtn", function () {
     location.reload()
 })
 
@@ -92,7 +96,7 @@ function writePlan(daysPlan) {
     let newTitle = $("<h2>").addClass("mainSectionHeader")
     newTitle.html('My Trip to ' + daysPlan.city.name + ': ' + dayjs(daysPlan.dayArr[0].date).format('M/D/YY') + ' to ' + dayjs(daysPlan.dayArr[daysPlan.dayArr.length - 1].date).format('M/D/YY'))
     newCard.append(newTitle)
-    let subTitle = $("<button>").addClass("resetBtn")
+    let subTitle = $("<button>").addClass("resetBtn newBtn")
     subTitle.html("Click here to start over.")
     newCard.append(subTitle)
     $("#planBody").append(newCard)

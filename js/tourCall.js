@@ -17,7 +17,7 @@ function writeAct(results, date, cityName) {
     let newTitle = $("<h2>").addClass("mainSectionHeader")
     newTitle.html('Top Activities in ' + cityName)
     newCard.append(newTitle)
-    let subTitle = $("<button>").addClass("resetBtn")
+    let subTitle = $("<button>").addClass("resetBtn backBtn")
     subTitle.html("Click here to go back.")
     newCard.append(subTitle)
     $("#planBody").append(newCard)
