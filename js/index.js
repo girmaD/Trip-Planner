@@ -95,8 +95,7 @@ function writePlan(daysPlan) {
         weather = false
     }
     let array = daysPlan.dayArr
-    for (let day of array) {
-        console.log(day)
+    for (let day of array) {        
         let date = dayjs(day.date, "YYYYMMDD")
         //create a formated date variable for later comparison and call it formDate 
         let formDate = dayjs(date).format('M/D/YYYY');               
@@ -118,12 +117,12 @@ function writePlan(daysPlan) {
                 url: url,
                 method: "GET"
             }).then(function(oneCall){   
-                console.log(oneCall)     
+                // console.log(oneCall)     
                 let i = 0;        
                 while(i < oneCall.daily.length){
                     let day = oneCall.daily[i].dt
                     let formattedDay = convertUnixtoDate(day); 
-                    console.log(formattedDay)                   
+                    // console.log(formattedDay)                   
                     if(formattedDay == formDate){
                         let icon = oneCall.daily[i].weather[0].icon
                         src = `https://openweathermap.org/img/wn/${icon}.png`
