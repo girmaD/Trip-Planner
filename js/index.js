@@ -29,6 +29,7 @@ $("#submit-button").on("click", function (event) {
     event.preventDefault();
     let arrive = dayjs($("#arrival-date").val(), "YYYY-MM-DD")
     let depart = dayjs($("#departure-date").val(), "YYYY-MM-DD")
+    let now = dayjs().format("YYYY-MM-DD");   
     let city = $("#cityPick").dropdown('get value')
     if (arrive != null && depart != null && city != null) {
         if (dayjs(arrive).isAfter(depart)) {
@@ -38,6 +39,10 @@ $("#submit-button").on("click", function (event) {
                 $("#departure-date").after('<p id="errMsg" style="color:red">Departure date must be AFTER arrival date.</p>')
                 return false
             }
+        }
+        if(dayjs(arrive).isBefore(now) && dayjs(depart).isBefore(now) ){           
+            $("#departure-date").after('<p id="errMsg" style="color:red">Arrival and Departure dates cannot be in the past.</p>')
+            return false
         }
         $('.ui.modal').modal('hide');
         createPlan(arrive, depart, city)
