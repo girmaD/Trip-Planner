@@ -5,7 +5,6 @@
 ## Table Of Contents
 * [Introduction](#Introduction)
 * [Objective](#Objective)
-<!-- * [Snap shot of the UI](#snap-shot-of-the-UI) -->
 * [How To Use The App](#How-To-Use-The-App)
 * [Technologies Used](#Technologies-Used)
 * [API's Used](#API's-Used)
@@ -63,7 +62,7 @@ Happy Trip!
 Should you have any questions about this repo or the deployed page, contact any of us
 
 - Kristine Horton at [kristinehrtn@yahoo.com](mailto:kristinehrtn@yahoo.com)
-- April Yang []() 
+- April Yang [aprilyanggarwood@gmail.com](mailto:aprilyanggarwood@gmail.com) 
 - Christina Engelhardt at [cjengelhardt@gmail.com](mailto:cjengelhardt@gmail.com)
 - Girma Ebssa at [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
 
