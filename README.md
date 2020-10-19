@@ -2,6 +2,7 @@
 # Trip Planner
 * View the [Github Repo](https://github.com/girmaD/Trip-Planner/tree/main)
 * View the [Deployed Application](https://girmad.github.io/Trip-Planner/)
+* View the [Presentation Slides](https://docs.google.com/presentation/d/14yzWKX24n7O9447GKuaL9KPIT-f9MpDyD-6vGLKPp38/edit#slide=id.g29f43f0a72_0_0)
 ## Table Of Contents
 * [Introduction](#Introduction)
 * [Objective](#Objective)
@@ -67,3 +68,8 @@ Should you have any questions about this repo or the deployed page, contact any 
 - Girma Ebssa at [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
 
 
+<<<<<<< HEAD
+Flag icons sourced from : https://www.countryflags.com/en/
+I found cities for the project.
+=======
+>>>>>>> 9fe22a28f9713455ec8a8c2619a17f97154fcf9a
