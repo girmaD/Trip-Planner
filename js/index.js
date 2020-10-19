@@ -68,6 +68,15 @@ $("#submit-button").on("click", function (event) {
                 return false
             }
         }
+        //check dates are present or future
+        if(dayjs(arrive).isBefore(dayjs()) && dayjs(depart).isBefore(dayjs()) ){
+          if ($("#errMsgtwo").length) {
+                return false
+          } else {
+                $("#departure-date").after('<p id="errMsgtwo" style="color:red">Arrival and Departure dates cannot be in the past.</p>')
+                return false
+          }
+        }
         //if dates check out, hide modal and call function to make new data structure
         $('.ui.modal').modal('hide');
         createPlan(arrive, depart, city)
