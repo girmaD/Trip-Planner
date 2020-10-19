@@ -36,8 +36,7 @@ A user can use this application in the following ways:
 4. A card that shows weather icons for each day of a user's stay with buttons to add activities and restaurants will be displayed - as shown below:
 ![Alt text](./images/screenShots/datesCard.png)
 
-A user can click ADD ACTIVITIES and ADD RESTAURANTS buttons to add activities and restaurants on the days of his/her stay. Clicking either of the buttons brings a list of its respective activities and restaurants to choose from. A user then can add an activity or restaurant of his/her choosing on the days of his/her stay.
-
+5. A user can click ADD ACTIVITIES and ADD RESTAURANTS buttons to add activities and restaurants on the days of his/her stay. Clicking either of the buttons brings a list of its respective activities and restaurants to choose from. A user then can add an activity or restaurant of his/her choosing on the days of his/her stay.
 A user will have the following screen after adding both activity and restaurant on his typical trip day.
 ![Alt text](./images/screenShots/actAndResAdded.png)
 
@@ -52,6 +51,7 @@ Happy Trip!
 - Semantic-UI
 - javaScript
 - jQuery
+- day.js
 
 ## API's Used
 
