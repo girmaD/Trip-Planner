@@ -151,6 +151,7 @@ color: #000066;
 
 .dayHeaderContent .weatherIcon {
 background-color: #aed6f1 ;
+border-radius: 10px;
 }
 
 #dragonIcon { 
