@@ -1,5 +1,7 @@
 //initializing modal menu and api keys
-$('.ui.modal').modal();
+$('.ui.modal').modal({
+    closable: false
+});
 let acct = ""
 let tkn = ""
 let owa = ""
@@ -16,7 +18,7 @@ if (localStorage.getItem("tripPlanStorage") == null) {
 }
 
 //listener for reset button on plan deck - clears storage and refreshes page
-$(document).on("click", ".newBtn", function () {
+$(document).on("click", ".clearBtn", function () {
     localStorage.removeItem("tripPlanStorage")
     location.reload()
 })
@@ -24,6 +26,24 @@ $(document).on("click", ".newBtn", function () {
 //listener for "back" button on search decks - refreshes page
 $(document).on("click", ".backBtn", function () {
     location.reload()
+})
+
+//listener for delete buttons on each activity/restaurant saved
+$(document).on("click", ".delBtn", function () {
+    let date = $(this).attr("data-date");
+    let type = $(this).attr("data-cat");
+    let index = $(this).attr("data-index");
+    let daysPlan = JSON.parse(localStorage.getItem("tripPlanStorage"))
+    let dayInd = daysPlan.dayArr.findIndex(x => x.date === date)
+    if (type == "act") {
+        daysPlan.dayArr[dayInd].act.splice(index, 1)
+    } else if (type == "rest") {
+        daysPlan.dayArr[dayInd].rest.splice(index, 1)
+    }
+    //save new data object to localStorage
+    localStorage.setItem("tripPlanStorage", JSON.stringify(daysPlan))
+    //call function to write cards to page
+    writePlan(daysPlan)
 })
 
 //listener to call a tour/activity search, function in tourCall.js
@@ -58,7 +78,7 @@ $("#submit-button").on("click", function (event) {
     //take city ID from dropdown
     let city = $("#cityPick").dropdown('get value')
     //check all boxes are filled in
-    if (arrive != null && depart != null && city != null) {
+    if (dayjs(arrive).isValid() && dayjs(depart).isValid() && city != "") {
         //check arrival date is BEFORE departure date
         if (dayjs(arrive).isAfter(depart)) {
             if ($("#errMsg").length) {
@@ -68,11 +88,14 @@ $("#submit-button").on("click", function (event) {
                 return false
             }
         }
-
-        if(dayjs(arrive).isBefore(now) || dayjs(depart).isBefore(now) ){           
-            $("#departure-date").after('<p id="errMsg" style="color:red">Arrival and Departure dates cannot be in the past.</p>')
-            return false
-
+        //check dates are present or future
+        if (dayjs(arrive).isBefore(dayjs()) || dayjs(depart).isBefore(dayjs())) {
+            if ($("#errMsgtwo").length) {
+                return false
+            } else {
+                $("#departure-date").after('<p id="errMsgtwo" style="color:red">Arrival and Departure dates cannot be in the past.</p>')
+                return false
+            }
         }
         //if dates check out, hide modal and call function to make new data structure
         $('.ui.modal').modal('hide');
@@ -120,8 +143,6 @@ function createPlan(arrive, depart, city) {
 function writePlan(daysPlan) {
     //Wipe any existing cards
     $("#planBody").html("")
-    //scroll to top of window (most useful after a search)
-    $(window).scrollTop(0)
     //create HTML objects for a header/title card
     let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
     newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
@@ -130,9 +151,9 @@ function writePlan(daysPlan) {
     newTitle.html('My Trip to ' + daysPlan.city.name + ', ' + dayjs(daysPlan.dayArr[0].date).format('M/D/YY') + ' to ' + dayjs(daysPlan.dayArr[daysPlan.dayArr.length - 1].date).format('M/D/YY'))
     newCard.append(newTitle)
     //add a button that will reset the saved data object
-    let subTitle = $("<button>").addClass("resetBtn newBtn")
-    subTitle.html("Click here to start over.")
-    newCard.append(subTitle)
+    let newBtn = $("<button>").addClass("resetBtn clearBtn")
+    newBtn.html("Click here to start over.")
+    newCard.append(newBtn)
     //write title card to page
     $("#planBody").append(newCard)
     //set default flag for weather
@@ -202,6 +223,13 @@ function writePlan(daysPlan) {
             //loop through activity array and add each to body
             for (i = 0; i < day.act.length; i++) {
                 newSection.append('<a target="_blank" href="' + day.act[i].link + '">' + day.act[i].name + '</a>')
+                //add a button to erase this item
+                newBtn = $("<button>").addClass("delBtn")
+                newBtn.attr("data-date", day.date)
+                newBtn.attr("data-index", i)
+                newBtn.attr("data-cat", "act")
+                newBtn.html("X")
+                newSection.append(newBtn)
                 newSection.append('<p>' + day.act[i].intro + '</p>')
             }
         } else {
@@ -218,6 +246,13 @@ function writePlan(daysPlan) {
             for (i = 0; i < day.rest.length; i++) {
                 //loop through restaurant array and add each to body
                 newSection.append('<a target="_blank" href="' + day.rest[i].link + '">' + day.rest[i].name + '</a>')
+                //add a button to erase this item
+                newBtn = $("<button>").addClass("delBtn")
+                newBtn.attr("data-date", day.date)
+                newBtn.attr("data-index", i)
+                newBtn.attr("data-cat", "rest")
+                newBtn.html("X")
+                newSection.append(newBtn)
                 newSection.append('<p>' + day.rest[i].intro + '</p>')
             }
         } else {
@@ -229,7 +264,7 @@ function writePlan(daysPlan) {
         //attach body to card
         newCard.append(newBody)
         //add button section
-        let newBtn = $("<div>").addClass("buttonContent")
+        newBtn = $("<div>").addClass("buttonContent")
         //buttons to add activities or restaurants.
         //each has data values for city ID, city name, and card's date to facilitate later functions
         newBtn.append('<button data-city=' + daysPlan.city.id + ' data-name=' + daysPlan.city.name + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
@@ -299,40 +334,40 @@ function gen() {
     tkn = tkn + maker[9]
     tkn = tkn + maker[13]
     tkn = tkn + maker[3]
-ptA = "968e"
-ptB = "1342"
-ptC = "bc7d"
-maker = ptA + ptB + ptC
-owa = owa + maker[0]
-owa = owa + maker[0]
-owa = owa + maker[1]
-owa = owa + maker[2]
-owa = owa + maker[1]
-owa = owa + maker[3]
-owa = owa + maker[4]
-owa = owa + maker[1]
-owa = owa + maker[5]
-owa = owa + maker[4]
-owa = owa + maker[1]
-owa = owa + maker[6]
-owa = owa + maker[4]
-owa = owa + maker[7]
-owa = owa + maker[8]
-owa = owa + maker[9]
-owa = owa + maker[0]
-owa = owa + maker[8]
-owa = owa + maker[7]
-owa = owa + maker[10]
-owa = owa + maker[8]
-owa = owa + maker[11]
-owa = owa + maker[0]
-owa = owa + maker[9]
-owa = owa + maker[8]
-owa = owa + maker[2]
-owa = owa + maker[1]
-owa = owa + maker[2]
-owa = owa + maker[11]
-owa = owa + maker[5]
-owa = owa + maker[0]
-owa = owa + maker[0]
+    ptA = "968e"
+    ptB = "1342"
+    ptC = "bc7d"
+    maker = ptA + ptB + ptC
+    owa = owa + maker[0]
+    owa = owa + maker[0]
+    owa = owa + maker[1]
+    owa = owa + maker[2]
+    owa = owa + maker[1]
+    owa = owa + maker[3]
+    owa = owa + maker[4]
+    owa = owa + maker[1]
+    owa = owa + maker[5]
+    owa = owa + maker[4]
+    owa = owa + maker[1]
+    owa = owa + maker[6]
+    owa = owa + maker[4]
+    owa = owa + maker[7]
+    owa = owa + maker[8]
+    owa = owa + maker[9]
+    owa = owa + maker[0]
+    owa = owa + maker[8]
+    owa = owa + maker[7]
+    owa = owa + maker[10]
+    owa = owa + maker[8]
+    owa = owa + maker[11]
+    owa = owa + maker[0]
+    owa = owa + maker[9]
+    owa = owa + maker[8]
+    owa = owa + maker[2]
+    owa = owa + maker[1]
+    owa = owa + maker[2]
+    owa = owa + maker[11]
+    owa = owa + maker[5]
+    owa = owa + maker[0]
+    owa = owa + maker[0]
 }
