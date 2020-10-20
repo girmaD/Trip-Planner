@@ -4,6 +4,7 @@ function actSearch(city, date, cityName) {
         url: "https://www.triposo.com/api/20200803/tour.json?location_ids=" + city + "&count=25&fields=name,highlights,intro,vendor_tour_url&order_by=-score&account=" + acct + "&token=" + tkn,
         method: "GET"
     }).done(function (response) {
+        console.log(response)
         //passes response to function, along with date and city name
         writeAct(response.results, date, cityName)
     });
@@ -94,6 +95,8 @@ $(document).on("click", ".act-add", function () {
     daysPlan.dayArr[ind].act.push(newAct)
     //save new data object to localStorage
     localStorage.setItem("tripPlanStorage", JSON.stringify(daysPlan))
+    //scroll to top of window
+    $(window).scrollTop(0)
     //call function to write new plan
     writePlan(daysPlan)
 })
