@@ -69,7 +69,7 @@ $("#submit-button").on("click", function (event) {
             }
         }
         //check dates are present or future
-        if(dayjs(arrive).isBefore(dayjs()) && dayjs(depart).isBefore(dayjs()) ){
+        if (dayjs(arrive).isBefore(dayjs()) || dayjs(depart).isBefore(dayjs())) {
           if ($("#errMsgtwo").length) {
                 return false
           } else {
