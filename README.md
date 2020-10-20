@@ -38,7 +38,7 @@ A user can use this application through the following steps:
 ![Main display of app, cards with each date in range and weather icon](./images/screenShots/datesCard.png)
 
 5. A user can click ADD ACTIVITIES and ADD RESTAURANTS buttons to add activities and restaurants on the days of their stay. Clicking either of the buttons brings a list of choices in that category. A user then can add an activity or restaurant of their choosing on the days of their stay.
-![An example of the restaurant search page](./images/screenShots/restChoice.png)
+![An example of the restaurant search page](/images/screenShots/restChoice.PNG)
 
 6. A user will have the following screen after adding both an activity and restaurant on a trip day. 
 ![A card from the main display, with 1 activity and 1 restaurant populated](./images/screenShots/actAndResAdded.png)
