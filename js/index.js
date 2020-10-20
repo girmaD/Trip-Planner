@@ -13,16 +13,23 @@ if (localStorage.getItem("tripPlanStorage") == null) {
     writePlan(daysPlan)
 }
 
+$(document).on("click", ".resetBtn", function () {
+    localStorage.removeItem("tripPlanStorage")
+    location.reload()
+})
+
 $(document).on("click", ".act-btn", function () {
     let date = $(this).attr("data-date");
     let city = $(this).attr("data-city");
-    actSearch(city, date)
+    let cityName = $(this).attr("data-name");
+    actSearch(city, date, cityName)
 })
 
 $(document).on("click", ".rest-btn", function () {
     let date = $(this).attr("data-date");
     let city = $(this).attr("data-city");
-    restSearch(city, date)
+    let cityName = $(this).attr("data-name");
+    restSearch(city, date, cityName)
 })
 
 $("#submit-button").on("click", function (event) {
@@ -40,7 +47,7 @@ $("#submit-button").on("click", function (event) {
                 return false
             }
         }
-        if(dayjs(arrive).isBefore(now) && dayjs(depart).isBefore(now) ){           
+        if(dayjs(arrive).isBefore(now) || dayjs(depart).isBefore(now) ){           
             $("#departure-date").after('<p id="errMsg" style="color:red">Arrival and Departure dates cannot be in the past.</p>')
             return false
         }
@@ -85,21 +92,38 @@ function createPlan(arrive, depart, city) {
 function writePlan(daysPlan) {
     $("#planBody").html("")
     $(window).scrollTop(0)
+    let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+    newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
+    let newTitle = $("<h2>").addClass("mainSectionHeader")
+    newTitle.html('My Trip to ' + daysPlan.city.name + ': ' + dayjs(daysPlan.dayArr[0].date).format('M/D/YY') + ' to ' + dayjs(daysPlan.dayArr[daysPlan.dayArr.length - 1].date).format('M/D/YY'))
+    newCard.append(newTitle)
+    let subTitle = $("<button>").addClass("resetBtn")
+    subTitle.html("Click here to start over.")
+    newCard.append(subTitle)
+    $("#planBody").append(newCard)
     //set flag for weather
     let weather = false
     //check if the dates are in range for weather
-    if (dayjs(daysPlan.dayArr[0].date).diff(dayjs(), 'day') <= 8) {
-        //yes in range, change flag and call OpenWeather for dailies
-        weather = true
+    if (dayjs(daysPlan.dayArr[0].date, "YYYYMMDD").diff(dayjs(), 'day') <= 8) {
+        //yes in range, call OpenWeather for dailies
+        let lat = daysPlan.city.coords.lat;
+        let lon = daysPlan.city.coords.lon;
+        let api = "99686e16316412bc9b27bd9cb868d399";
+        let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&appid=${api}`
+        $.ajax({
+            url: url,
+            method: "GET",
+            async: false
+        }).done(function (oneCall) {
+            weather = oneCall.daily
+        })
     } else {
         weather = false
     }
     let array = daysPlan.dayArr
-    for (let day of array) {        
+    for (let day of array) {
         let date = dayjs(day.date, "YYYYMMDD")
-        //create a formated date variable for later comparison and call it formDate 
-        let formDate = dayjs(date).format('M/D/YYYY');               
-        let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+        newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
         newCard.attr("style", "margin-top: 30px; padding: 0px; background-color: #fcf2cf;")
         let newHead = $("<div>").addClass("content dayHeaderContent")
         //create img tag with the classes included as shown
@@ -108,29 +132,19 @@ function writePlan(daysPlan) {
         let src = "https://img.icons8.com/clouds/45/000000/question-mark.png";
         imgEl.attr("src", src)  
         //if the dates choses are with in the range of weather data, weather icons will replace the question mark img
-        if (weather = true) {
-            let lat = daysPlan.city.coords.lat;
-            let lon = daysPlan.city.coords.lon;
-            let api = "99686e16316412bc9b27bd9cb868d399";
-            let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${api}`
-            $.ajax({
-                url: url,
-                method: "GET"
-            }).then(function(oneCall){   
-                // console.log(oneCall)     
-                let i = 0;        
-                while(i < oneCall.daily.length){
-                    let day = oneCall.daily[i].dt
-                    let formattedDay = convertUnixtoDate(day); 
-                    // console.log(formattedDay)                   
-                    if(formattedDay == formDate){
-                        let icon = oneCall.daily[i].weather[0].icon
+        if (weather != false) {
+                let i = 0;
+                while (i < weather.length) {
+                    let wDay = dayjs.unix(weather[i].dt)
+                    wDay = dayjs(wDay).subtract(1, 'day')
+                    let formattedDay = dayjs(wDay).format("YYYYMMDD");
+                    if (formattedDay == day.date) {
+                        let icon = weather[i].weather[0].icon
                         src = `https://openweathermap.org/img/wn/${icon}.png`
-                        imgEl.attr("src", src)   
-                    }                    
+                        imgEl.attr("src", src)
+                    }
                     i++
-                }                   
-            })            
+                }
         }
         let newLabel = $("<div>").addClass("dayHeader left floated")
         newLabel.text(dayjs(date).format('dddd[, ]M/D/YY'))
@@ -165,20 +179,11 @@ function writePlan(daysPlan) {
         newCard.append(newBody)
         //add buttons
         let newBtn = $("<div>").addClass("buttonContent")
-        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
-        newBtn.append('<button data-city=' + daysPlan.city.id + '  data-date=' + day.date + ' class="rest-btn ui button">ADD RESTAURANT</button>')
+        newBtn.append('<button data-city=' + daysPlan.city.id + ' data-name=' + daysPlan.city.name + '  data-date=' + day.date + ' class="act-btn ui button">ADD ACTIVITY</button>')
+        newBtn.append('<button data-city=' + daysPlan.city.id + ' data-name=' + daysPlan.city.name + '  data-date=' + day.date + ' class="rest-btn ui button">ADD RESTAURANT</button>')
         newCard.append(newBtn)
         $("#planBody").append(newCard)
     }
-}
-function convertUnixtoDate(unix) {    
-    var timestampInMilliSeconds = unix * 1000;
-    var date = new Date(timestampInMilliSeconds);
-    var day = (date.getDate() < 10 ? '0' : '') + date.getDate();
-    var month = (date.getMonth() < 9 ? '0' : '') + (date.getMonth() + 1);
-    var year = date.getFullYear();
-    var formattedDate = month + '/' + day + '/' + year;
-    return (formattedDate);
 }
 
 function gen() {

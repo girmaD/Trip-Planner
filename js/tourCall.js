@@ -1,17 +1,26 @@
-function actSearch(city, date) {
+function actSearch(city, date, cityName) {
     //the tour call - tkn and acct are still around from index
     $.ajax({
         url: "https://www.triposo.com/api/20200803/tour.json?location_ids=" + city + "&count=25&fields=name,highlights,intro,vendor_tour_url&order_by=-score&account=" + acct + "&token=" + tkn,
         method: "GET"
     }).done(function (response) {
-        console.log(response);
-        writeAct(response.results, date)
+        console.log(response)
+        writeAct(response.results, date, cityName)
     });
 }
 
-function writeAct(results, date) {
+function writeAct(results, date, cityName) {
     $("#planBody").html("")
     $(window).scrollTop(0)
+    let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+    newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
+    let newTitle = $("<h2>").addClass("mainSectionHeader")
+    newTitle.html('Top Activities in ' + cityName)
+    newCard.append(newTitle)
+    let subTitle = $("<button>").addClass("resetBtn")
+    subTitle.html("Click here to go back.")
+    newCard.append(subTitle)
+    $("#planBody").append(newCard)
     let x = 0
     for (let act of results) {
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")

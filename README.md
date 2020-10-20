@@ -2,6 +2,7 @@
 # Trip Planner
 * View the [Github Repo](https://github.com/girmaD/Trip-Planner/tree/main)
 * View the [Deployed Application](https://girmad.github.io/Trip-Planner/)
+* View the [Presentation Slides](https://docs.google.com/presentation/d/14yzWKX24n7O9447GKuaL9KPIT-f9MpDyD-6vGLKPp38/edit#slide=id.g29f43f0a72_0_0)
 ## Table Of Contents
 * [Introduction](#Introduction)
 * [Objective](#Objective)
@@ -65,5 +66,3 @@ Should you have any questions about this repo or the deployed page, contact any 
 - April Yang [aprilyanggarwood@gmail.com](mailto:aprilyanggarwood@gmail.com) 
 - Christina Engelhardt at [cjengelhardt@gmail.com](mailto:cjengelhardt@gmail.com)
 - Girma Ebssa at [girma.derib@gmail.com](mailto:girma.derib@gmail.com)
-
-

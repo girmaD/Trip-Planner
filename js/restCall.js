@@ -1,18 +1,26 @@
-function restSearch(city, date) {
+function restSearch(city, date, cityName) {
     //rest
     $.ajax({
         url: "https://www.triposo.com/api/20200803/poi.json?location_id=" + city + "&tag_labels=eatingout&count=25&fields=all&order_by=-score&account=" + acct + "&token=" + tkn,
         method: "GET"
     }).done(function (response) {
-        console.log(response.results)
-        writeRest(response.results, date);
+        writeRest(response.results, date, cityName);
     });
 }
 
 
-function writeRest(results, date) {
+function writeRest(results, date, cityName) {
     $("#planBody").html("")
     $(window).scrollTop(0)
+    let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
+    newCard.attr("style", "margin-top: 30px; padding: 10px; background-color: #fcf2cf;")
+    let newTitle = $("<h2>").addClass("mainSectionHeader")
+    newTitle.html('Top Restaurants in ' + cityName)
+    newCard.append(newTitle)
+    let subTitle = $("<button>").addClass("resetBtn")
+    subTitle.html("Click here to go back.")
+    newCard.append(subTitle)
+    $("#planBody").append(newCard)
     let x = 0
     for (let rest of results) {
         let newCard = $("<div>").addClass("daily-activity ui centered raised fluid card")
@@ -36,7 +44,21 @@ function writeRest(results, date) {
             newBody.append(newList)
         }
         newBody.append('<h4 class="ARheader">Website</h4>')
-        newBody.append('<a class="actLink" target="_blank" data-index=' + x + ' href="' + rest.vendor_tour_url + '">More information here!</a>')
+        //link to restaurant's facebook page, if provided
+        if (rest.facebook_id) {
+            newBody.append('<a class="restLink" target="_blank" data-index=' + x + ' href="https://facebook.com/profile.php?id=' + rest.facebook_id + '">More information here!</a>')
+        } else {
+            //if no facebook id, use the "attribution" section
+            if (rest.attribution.length == 1) {
+                //use first address if there is only one
+                newBody.append('<a class="restLink" target="_blank" data-index=' + x + ' href="' + rest.attribution[0].url + '">More information here!</a>')
+            } else if (rest.attribution.length > 1) {
+                newBody.append('<a class="restLink" target="_blank" data-index=' + x + ' href="' + rest.attribution[1].url + '">More information here!</a>')
+            } else {
+                //if also no attributions, give up.
+                newBody.append("<p>(No website available.)</p>")
+            }
+        }
         let newBtn = $("<div>").addClass("buttonContent")
         newBtn.append('<button data-index=' + x + ' data-date=' + date + ' class="rest-add ui button">Add to ' + dayjs(date).format('dddd[, ]M/D/YY') + '</button>')
         newCard.append(newBtn)
@@ -50,7 +72,7 @@ $(document).on("click", ".rest-add", function () {
     let index = $(this).attr("data-index");
     let name = $(".actName[data-index='" + index + "']").html()
     let intro = $(".intro[data-index='" + index + "']").text()
-    let link = $(".actLink[data-index='" + index + "']").attr('href')
+    let link = $(".restLink[data-index='" + index + "']").attr('href')
     let newRest = {
         'name': name,
         'intro': intro,
@@ -59,7 +81,6 @@ $(document).on("click", ".rest-add", function () {
     let daysPlan = JSON.parse(localStorage.getItem("tripPlanStorage"))
     let ind = daysPlan.dayArr.findIndex(x => x.date === date)
     daysPlan.dayArr[ind].rest.push(newRest)
-    console.log(daysPlan)
     localStorage.setItem("tripPlanStorage", JSON.stringify(daysPlan))
     writePlan(daysPlan)
 })
