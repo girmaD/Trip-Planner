@@ -94,6 +94,8 @@ $(document).on("click", ".act-add", function () {
     daysPlan.dayArr[ind].act.push(newAct)
     //save new data object to localStorage
     localStorage.setItem("tripPlanStorage", JSON.stringify(daysPlan))
+    //scroll to top of window
+    $(window).scrollTop(0)
     //call function to write new plan
     writePlan(daysPlan)
 })
