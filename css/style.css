@@ -13,7 +13,6 @@ font-size: 4rem;
 color: rgb(68, 133, 187); 
 font-family: 'Berkshire Swash',
 cursive;
-/* text-shadow: (20px 20px purple); */
 }
 
 .mainSectionHeader {
@@ -55,6 +54,18 @@ body {
   background-color: #fcf2cf;
 }
 
+@media screen and (max-width: 992px) {
+  #main-section {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #main-section {
+    width: 90%;
+  }
+}
+
 #submit-button {
 background-color:#abb2b9;
 color: #660066;
@@ -65,7 +76,6 @@ cursive;
 }
 
 .daily-activity {
-  /* margin: 0 auto; */
 background-color: #fcf2cf;
   width: 40rem;
 }
@@ -78,8 +88,6 @@ ul {
   font-size: medium;
   padding: 15px 20px;
   color: SlateGrey;
-  /* color:#c39bd3; */
-  /* color: rgb(68, 133, 187); */
   font-family: 'Berkshire Swash',
     cursive;
   font-size: x-large;
@@ -102,8 +110,6 @@ ul {
   padding: 15px 20px;
   font-size: medium;
   color: SlateGrey;
-  /* color:#c39bd3; */
-  /* color: rgb(68, 133, 187); */
   font-family: 'Berkshire Swash',
     cursive;
   font-size: xx-large;
