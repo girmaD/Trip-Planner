@@ -53,7 +53,7 @@ $(document).on("click", ".act-btn", function () {
     let cityName = $(this).attr("data-name");
     //Passes city id for Triposo, date for "add" buttons, and city name for header
     //Wipe cards so user knows something happened
-    $("#planBody").html("")
+    $("#planBody").html('<div class="ui active dimmer"><div class="ui text loader">Finding the hottest activities</div></div><p></p>')
     actSearch(city, date, cityName)
 })
 
@@ -64,7 +64,7 @@ $(document).on("click", ".rest-btn", function () {
     let cityName = $(this).attr("data-name");
     //Passes city id for Triposo, date for "add" buttons, and city name for header
     //Wipe cards so user knows something happened
-    $("#planBody").html("")
+    $("#planBody").html('<div class="ui active dimmer"><div class="ui text loader">Searching for the best restaurants</div></div><p></p>')
     restSearch(city, date, cityName)
 })
 
