@@ -62,6 +62,9 @@ Happy Trip!
 - [Triposo API](https://www.triposo.com/api/) - to get information on activities and restaurants.
 - [OpenWeather API](https://openweathermap.org/) - to get information on weather conditions.
 
+## License
+- MIT
+
 ## Contact
 
 Should you have any questions about this repo or the deployed page, contact any of us
